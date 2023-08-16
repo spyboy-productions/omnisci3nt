@@ -15,24 +15,32 @@ def dnsrec(domain):
     timeout = 10
 
     dns_server = '8.8.8.8'  # Google DNS server
-    resolver = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    resolver.connect((dns_server, 53))
 
     for record_type in types:
         try:
-            response = resolver.sendto(domain.encode('utf-8'), (dns_server, 53))
-            data, _ = resolver.recvfrom(4096)
-            print(f'{G}[+] {C}{record_type}:{W} {data.decode("utf-8")}')
-            result['dns'].append(f'{record_type}: {data.decode("utf-8")}')
+            resolver = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            resolver.settimeout(timeout)
+            resolver.connect((dns_server, 53))
+            query = bytes([len(domain)]) + domain.encode('utf-8') + bytes([0]) + bytes([types.index(record_type) + 1]) + bytes([0]) + bytes([1])
+            resolver.send(query)
+            data = resolver.recv(4096)
+            resolver.close()
+            print(f'{G}[+] {C}{record_type}:{W} {data[13:].decode("utf-8")}')
+            result['dns'].append(f'{record_type}: {data[13:].decode("utf-8")}')
         except (socket.gaierror, socket.timeout):
             pass
 
     dmarc_target = f'_dmarc.{domain}'
     try:
-        dmarc_response = resolver.sendto(dmarc_target.encode('utf-8'), (dns_server, 53))
-        data, _ = resolver.recvfrom(4096)
-        print(f'{G}[+] {C}DMARC:{W} {data.decode("utf-8")}')
-        result['dmarc'].append(f'DMARC: {data.decode("utf-8")}')
+        resolver = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        resolver.settimeout(timeout)
+        resolver.connect((dns_server, 53))
+        dmarc_query = bytes([len(dmarc_target)]) + dmarc_target.encode('utf-8') + bytes([0]) + bytes([16]) + bytes([0]) + bytes([1])
+        resolver.send(dmarc_query)
+        data = resolver.recv(4096)
+        resolver.close()
+        print(f'{G}[+] {C}DMARC:{W} {data[13:].decode("utf-8")}')
+        result['dmarc'].append(f'DMARC: {data[13:].decode("utf-8")}')
     except (socket.gaierror, socket.timeout):
         pass
 
