@@ -1,4 +1,4 @@
-import socket
+import dns.resolver
 
 R = '\033[31m'  # red
 G = '\033[32m'  # green
@@ -14,34 +14,27 @@ def dnsrec(domain):
     # Set a timeout value in seconds
     timeout = 10
 
-    dns_server = '8.8.8.8'  # Google DNS server
+    resolver = dns.resolver.Resolver()
+    resolver.nameservers = ['8.8.8.8']
+    resolver.timeout = timeout
+    resolver.lifetime = timeout
 
     for record_type in types:
         try:
-            resolver = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-            resolver.settimeout(timeout)
-            resolver.connect((dns_server, 53))
-            query = bytes([len(domain)]) + domain.encode('utf-8') + bytes([0]) + bytes([types.index(record_type) + 1]) + bytes([0]) + bytes([1])
-            resolver.send(query)
-            data = resolver.recv(4096)
-            resolver.close()
-            print(f'{G}[+] {C}{record_type}:{W} {data[13:].decode("utf-8")}')
-            result['dns'].append(f'{record_type}: {data[13:].decode("utf-8")}')
-        except (socket.gaierror, socket.timeout):
+            response = resolver.query(domain, record_type)
+            for answer in response:
+                print(f'{G}[+] {C}{record_type}:{W} {answer}')
+                result['dns'].append(f'{record_type}: {answer}')
+        except (dns.resolver.NXDOMAIN, dns.resolver.NoAnswer, dns.resolver.Timeout):
             pass
 
     dmarc_target = f'_dmarc.{domain}'
     try:
-        resolver = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        resolver.settimeout(timeout)
-        resolver.connect((dns_server, 53))
-        dmarc_query = bytes([len(dmarc_target)]) + dmarc_target.encode('utf-8') + bytes([0]) + bytes([16]) + bytes([0]) + bytes([1])
-        resolver.send(dmarc_query)
-        data = resolver.recv(4096)
-        resolver.close()
-        print(f'{G}[+] {C}DMARC:{W} {data[13:].decode("utf-8")}')
-        result['dmarc'].append(f'DMARC: {data[13:].decode("utf-8")}')
-    except (socket.gaierror, socket.timeout):
+        dmarc_response = resolver.query(dmarc_target, 'TXT')
+        for answer in dmarc_response:
+            print(f'{G}[+] {C}DMARC:{W} {answer}')
+            result['dmarc'].append(f'DMARC: {answer}')
+    except (dns.resolver.NXDOMAIN, dns.resolver.NoAnswer, dns.resolver.Timeout):
         pass
 
     if result['dns'] or result['dmarc']:
