@@ -15,22 +15,24 @@ def dnsrec(domain):
     timeout = 10
 
     dns_server = '8.8.8.8'  # Google DNS server
+    resolver = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    resolver.connect((dns_server, 53))
 
     for record_type in types:
         try:
-            response = socket.gethostbyname_ex(domain + "." + record_type, dns_server)
-            for answer in response[2]:
-                print(f'{G}[+] {C}{record_type}:{W} {answer}')
-                result['dns'].append(f'{record_type}: {answer}')
+            response = resolver.sendto(domain.encode('utf-8'), (dns_server, 53))
+            data, _ = resolver.recvfrom(4096)
+            print(f'{G}[+] {C}{record_type}:{W} {data.decode("utf-8")}')
+            result['dns'].append(f'{record_type}: {data.decode("utf-8")}')
         except (socket.gaierror, socket.timeout):
             pass
 
     dmarc_target = f'_dmarc.{domain}'
     try:
-        dmarc_response = socket.gethostbyname_ex(dmarc_target, dns_server)
-        for answer in dmarc_response[2]:
-            print(f'{G}[+] {C}DMARC:{W} {answer}')
-            result['dmarc'].append(f'DMARC: {answer}')
+        dmarc_response = resolver.sendto(dmarc_target.encode('utf-8'), (dns_server, 53))
+        data, _ = resolver.recvfrom(4096)
+        print(f'{G}[+] {C}DMARC:{W} {data.decode("utf-8")}')
+        result['dmarc'].append(f'DMARC: {data.decode("utf-8")}')
     except (socket.gaierror, socket.timeout):
         pass
 
