@@ -1,4 +1,4 @@
-import dns.resolver
+import socket
 
 R = '\033[31m'  # red
 G = '\033[32m'  # green
@@ -14,27 +14,24 @@ def dnsrec(domain):
     # Set a timeout value in seconds
     timeout = 10
 
-    resolver = dns.resolver.Resolver(configure=False)
-    resolver.nameservers = [dns.resolver.Resolver().query('google.com', 'A')[0].address]
-    resolver.timeout = timeout
-    resolver.lifetime = timeout
+    dns_server = '8.8.8.8'  # Google DNS server
 
     for record_type in types:
         try:
-            response = resolver.resolve(domain, record_type)
-            for answer in response:
+            response = socket.gethostbyname_ex(domain + "." + record_type, dns_server)
+            for answer in response[2]:
                 print(f'{G}[+] {C}{record_type}:{W} {answer}')
                 result['dns'].append(f'{record_type}: {answer}')
-        except (dns.resolver.NXDOMAIN, dns.resolver.NoAnswer, dns.resolver.Timeout):
+        except (socket.gaierror, socket.timeout):
             pass
 
     dmarc_target = f'_dmarc.{domain}'
     try:
-        dmarc_response = resolver.resolve(dmarc_target, 'TXT')
-        for answer in dmarc_response:
+        dmarc_response = socket.gethostbyname_ex(dmarc_target, dns_server)
+        for answer in dmarc_response[2]:
             print(f'{G}[+] {C}DMARC:{W} {answer}')
             result['dmarc'].append(f'DMARC: {answer}')
-    except (dns.resolver.NXDOMAIN, dns.resolver.NoAnswer, dns.resolver.Timeout):
+    except (socket.gaierror, socket.timeout):
         pass
 
     if result['dns'] or result['dmarc']:
