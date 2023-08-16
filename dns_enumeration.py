@@ -15,7 +15,7 @@ def dnsrec(domain):
     timeout = 10
 
     resolver = dns.resolver.Resolver()
-    resolver.nameservers = ['8.8.8.8']
+    resolver.nameservers = ['8.8.8.8', '8.8.4.4']  # Set your preferred DNS server here
     resolver.timeout = timeout
     resolver.lifetime = timeout
 
