@@ -1,8 +1,35 @@
-**Omnisci3nt: Unveiling the Hidden Layers of the Web**
+<p align="center">
+    <a href="https://spyboy.in/twitter">
+      <img src="https://img.shields.io/badge/-TWITTER-black?logo=twitter&style=for-the-badge">
+    </a>
+    &nbsp;
+    <a href="https://spyboy.in/">
+      <img src="https://img.shields.io/badge/-spyboy.in-black?logo=google&style=for-the-badge">
+    </a>
+    &nbsp;
+    <a href="https://spyboy.blog/">
+      <img src="https://img.shields.io/badge/-spyboy.blog-black?logo=wordpress&style=for-the-badge">
+    </a>
+    &nbsp;
+    <a href="https://spyboy.in/Discord">
+      <img src="https://img.shields.io/badge/-Discord-black?logo=discord&style=for-the-badge">
+    </a>
+  
+</p>
 
-Omnisci3nt is a powerful web reconnaissance tool designed to unravel the concealed intricacies of the online realm. With a comprehensive array of capabilities, Omnisci3nt offers users the means to delve into various aspects of a target domain, including IP lookup, domain information, SSL certificate details, DNS enumeration, subdomain enumeration, port scanning, web crawling, analysis of technologies utilized, Wayback Machine exploration, DMARC record examination, social media link discovery, and more. 
+<img width="100%" align="centre" src="https://cdn.discordapp.com/attachments/1141162711464550430/1141300142440468510/omnisci3nt.png" />
+
+<h4 align="center"> Unveiling the Hidden Layers of the Web – A Comprehensive Web Reconnaissance Tool. </h4>
 
 Omnisci3nt equips users with a comprehensive toolkit for conducting web reconnaissance with precision and efficiency.
+
+<h4 align="center"> This tool is a Proof of Concept and is for Educational Purposes Only. </h4> 
+
+---
+
+Omnisci3nt is a powerful web reconnaissance tool designed to unravel the concealed intricacies of the online realm. With a comprehensive array of capabilities, Omnisci3nt offers users the means to delve into various aspects of a target domain, including IP lookup, domain information, SSL certificate details, DNS enumeration, subdomain enumeration, port scanning, web crawling, analysis of technologies utilized, Wayback Machine exploration, DMARC record examination, social media link discovery, and more.
+
+Whether you're a cybersecurity professional, researcher, or individual seeking to gain insights into a particular domain, Omnisci3nt's versatile toolkit offers a comprehensive solution for navigating the intricate landscape of the web.
 
 **Key Features:**
 
@@ -17,5 +44,3 @@ Omnisci3nt equips users with a comprehensive toolkit for conducting web reconnai
 - Wayback Machine Access: Explore archived versions of the website.
 - DMARC Record Examination: Understand email security measures.
 - Social Media and Email Discovery: Uncover associated links and addresses.
-
-Whether you're a cybersecurity professional, researcher, or individual seeking to gain insights into a particular domain, Omnisci3nt's versatile toolkit offers a comprehensive solution for navigating the intricate landscape of the web.
