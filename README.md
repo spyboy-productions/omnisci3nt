@@ -83,3 +83,13 @@ python3 omnisci3nt.py
 
 #### 💬 If having issue [Chat here](https://discord.gg/ZChEmMwE8d)
 [![Discord Server](https://discord.com/api/guilds/726495265330298973/embed.png)](https://discord.gg/ZChEmMwE8d)
+
+### ⭔ Snapshots
+---
+
+<img width="100%" align="centre" src="https://cdn.discordapp.com/attachments/1141162711464550430/1141305062589743144/Screenshot_2023-08-16_at_3.06.02_PM.png" />
+<img width="100%" align="centre" src="https://cdn.discordapp.com/attachments/1141162711464550430/1141305062979817582/Screenshot_2023-08-16_at_3.06.16_PM.png" />
+<img width="100%" align="centre" src="https://cdn.discordapp.com/attachments/1141162711464550430/1141305063533445251/Screenshot_2023-08-16_at_3.06.42_PM.png" />
+<img width="100%" align="centre" src="https://cdn.discordapp.com/attachments/1141162711464550430/1141305064082915338/Screenshot_2023-08-16_at_3.07.06_PM.png" />
+<img width="100%" align="centre" src="https://cdn.discordapp.com/attachments/1141162711464550430/1141305064607207424/Screenshot_2023-08-16_at_3.07.26_PM.png" />
+
