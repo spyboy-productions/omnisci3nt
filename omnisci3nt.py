@@ -246,8 +246,12 @@ if __name__ == "__main__":
 
 ### DNS enumeration
 if __name__ == "__main__":
-    target_host = f"{link}"
-    dnsrec(domain=target_host)
+    try:
+
+        target_host = f"{link}"
+        dnsrec(domain=target_host)
+    except Exception as e:
+        print(e)
 
 ### Shared DNS
     try:
