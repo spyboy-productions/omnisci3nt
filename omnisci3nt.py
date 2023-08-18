@@ -106,7 +106,6 @@ else:
     link = input_text
 
 output_filename = f"recon({link}).text"
-output_filename = "recon_output.txt"
 with open(output_filename, "w") as output_file:
     class Tee:
         def __init__(self, *files):
