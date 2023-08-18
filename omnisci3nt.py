@@ -233,9 +233,13 @@ with open(output_filename, "w") as output_file:
 
     ### SSL certificate checker
     if __name__ == "__main__":
-        target_host = f"{link}"
-        certificate_info = get_certificate_info(target_host)
-        print_certificate_info(certificate_info)
+        try:
+            target_host = f"{link}"
+            certificate_info = get_certificate_info(target_host)
+            print_certificate_info(certificate_info)
+        except Exception as e:
+            print(e)
+          
 
     ### DNS enumeration
     if __name__ == "__main__":
@@ -266,87 +270,125 @@ with open(output_filename, "w") as output_file:
 
     ### Subdomain Enumeration
     if __name__ == "__main__":
-        target_host = f"{link}"
-        print(f"\n{C}Scanning for subdomains. Please wait...")
-        find_subdomains(domain=target_host, filename='wordlist2.txt')
+        try:
+            target_host = f"{link}"
+            print(f"\n{C}Scanning for subdomains. Please wait...")
+            find_subdomains(domain=target_host, filename='wordlist2.txt')
+        except Exception as e:
+            print(e)
 
     ### Port scan
     if __name__ == "__main__":
-        target_host = f"{link}"
-        asyncio.run(scan_ports(target_host, threads=100))  # Await the coroutine using asyncio.run()
+        try:
+
+            target_host = f"{link}"
+            asyncio.run(scan_ports(target_host, threads=100))  # Await the coroutine using asyncio.run()
+
+        except Exception as e:
+            print(e)
 
     ### Web Crawler
     if __name__ == "__main__":
-        target_host = f"https://{link}"
-        print(f'\n{Y}[!] Web Crawler :{W}\n')
-        perform_web_recon(target_host)
+        try:
+
+            target_host = f"https://{link}"
+            print(f'\n{Y}[!] Web Crawler :{W}\n')
+            perform_web_recon(target_host)
+
+        except Exception as e:
+            print(e)
 
     ### Robots & sitemap Crawler
     if __name__ == "__main__":
-        target_host = f"https://{link}"
-        print(f'\n{Y}[!] Robots & sitemap :{W}\n')
-        check_website(target_host)
+        try:
+
+            target_host = f"https://{link}"
+            print(f'\n{Y}[!] Robots & sitemap :{W}\n')
+            check_website(target_host)
+
+        except Exception as e:
+            print(e)
 
     ### website build with
     if __name__ == "__main__":
-        website_url = f"https://{link}"
+        try:
 
-        print(f'\n{Y}[!] Website build with :{W}\n')
+            website_url = f"https://{link}"
 
-        programming_languages, technologies, javascript_libraries, web_server = analyze_website(website_url)
+            print(f'\n{Y}[!] Website build with :{W}\n')
 
-        if programming_languages:
-            print(f"{G}[+] {C}Detected programming languages:{W}", f", ".join(programming_languages))
-        else:
-            print(f"{R}No programming language detected or an error occurred.")
+            programming_languages, technologies, javascript_libraries, web_server = analyze_website(website_url)
 
-        if technologies:
-            print(f"\n{G}[+] {C}Website technologies:")
-            for tech, details in technologies.items():
-                print(f"{W}{tech}: {details}")
-        else:
-            print(f"{R}An error occurred while fetching technologies.")
+            if programming_languages:
+                print(f"{G}[+] {C}Detected programming languages:{W}", f", ".join(programming_languages))
+            else:
+                print(f"{R}No programming language detected or an error occurred.")
 
-        if javascript_libraries:
-            print(f"\n{G}[+] {C}JavaScript libraries:")
-            for library in javascript_libraries:
-                print(f"{W}- " + library)
-        else:
-            print(f"{R}No JavaScript libraries detected.")
+            if technologies:
+                print(f"\n{G}[+] {C}Website technologies:")
+                for tech, details in technologies.items():
+                    print(f"{W}{tech}: {details}")
+            else:
+                print(f"{R}An error occurred while fetching technologies.")
 
-        print(f"\n{G}[+] {C}Web server:", f"{W}{web_server}")
+            if javascript_libraries:
+                print(f"\n{G}[+] {C}JavaScript libraries:")
+                for library in javascript_libraries:
+                    print(f"{W}- " + library)
+            else:
+                print(f"{R}No JavaScript libraries detected.")
+
+            print(f"\n{G}[+] {C}Web server:", f"{W}{web_server}")
+
+        except Exception as e:
+            print(e)
 
 
     ### Wayback
     if __name__ == "__main__":
-        target_host = f"{link}"
-        print(f'\n{Y}[!] Wayback :{W}\n')
-        fetch_wayback_links(target=target_host)
+        try:
+
+            target_host = f"{link}"
+            print(f'\n{Y}[!] Wayback :{W}\n')
+            fetch_wayback_links(target=target_host)
+
+        except Exception as e:
+            print(e)
 
     ### DMARC Record
     if __name__ == "__main__":
-        target_host = f"{link}"
-        fetch_dmarc_links(domain=target_host)
+        try:
+
+            target_host = f"{link}"
+            fetch_dmarc_links(domain=target_host)
+
+        except Exception as e:
+            print(e)
 
     ### Social media links
     if __name__ == "__main__":
-        target_host = f"https://{link}"
-        print(f'\n{Y}[!] Social media links :{W}\n')
-        social_media_links, emails = extract_links_and_emails(target_host)
+        try:
 
-        if social_media_links:
-            print("Social media links:")
-            for link in social_media_links:
-                print(link)
-        else:
-            print("No social media links found or an error occurred.")
+            target_host = f"https://{link}"
+            print(f'\n{Y}[!] Social media links :{W}\n')
+            social_media_links, emails = extract_links_and_emails(target_host)
 
-        if emails:
-            print("\nEmail addresses:")
-            for email in emails:
-                print(email)
-        else:
-            print("No email addresses found or an error occurred.")
+            if social_media_links:
+                print("Social media links:")
+                for link in social_media_links:
+                    print(link)
+            else:
+                print("No social media links found or an error occurred.")
+
+            if emails:
+                print("\nEmail addresses:")
+                for email in emails:
+                    print(email)
+            else:
+                print("No email addresses found or an error occurred.")
+
+        except Exception as e:
+            print(e)
 
     ### Completed!!
 
@@ -368,4 +410,4 @@ with open(output_filename, "w") as output_file:
     print(f"{G}[+] {C}Time taken: {W}{elapsed_time:.2f} seconds")
     sys.stdout = sys.__stdout__  # Restore standard output
 
-    print(f"{G}[+] {C}Output saved to '{output_filename}'")
+print(f"{G}[+] {C}Output saved to '{output_filename}'")
