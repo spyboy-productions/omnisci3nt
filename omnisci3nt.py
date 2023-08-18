@@ -40,7 +40,8 @@ banner = r'''
  /  _ \ /     \ /    \|  |/  ___// ___\|  | _(__  < /    \   __\
 (  <_> )  Y Y  \   |  \  |\___ \\  \___|  |/       \   |  \  |  
  \____/|__|_|  /___|  /__/____  >\___  >__/______  /___|  /__|  
-             \/     \/        \/     \/          \/     \/      
+             \/     \/        \/     \/          \/     \/ 
+Unveiling the Hidden Layers of the Web – A Comprehensive Web Reconnaissance Tool.     
 
 '''
 
@@ -90,7 +91,19 @@ async def scan_ports(ip, threads=100):
 ################
 print_banners()
 link = input("Enter Domain: ")
-print(f"\n{R}Starting the Recon\n")
+
+banner2 = r'''
+|￣￣￣￣￣￣￣￣￣￣￣￣￣|
+   Starting the Recon 
+|＿＿＿＿＿＿＿＿＿＿＿＿＿|
+      \(•◡•)/ 
+       \   / 
+        ——— 
+       |   |
+       |   |
+'''
+#print(f"\n{R}Starting the Recon\n")
+print(f"{G}{banner2}")
 start_time = time.time()
 
 ################
@@ -307,6 +320,16 @@ if __name__ == "__main__":
 end_time = time.time()
 elapsed_time = end_time - start_time
 
-print(f"\n{R}Recon completed\n")
+banner3 = r'''
+￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+   Recon completed                        
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿ 
+(\__/) || 
+(•ㅅ•) || 
+/ 　 づ
+
+'''
+print(f"{R}{banner3}")
+#print(f"\n{R}Recon completed\n")
 print(f"{G}[+] {C}Date: {W}{formatted_date}")
 print(f"{G}[+] {C}Time taken: {W}{elapsed_time:.2f} seconds")
