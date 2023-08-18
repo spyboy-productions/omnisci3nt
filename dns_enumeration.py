@@ -12,8 +12,8 @@ def get_domain_ip(domain):
         ip_address = socket.gethostbyname(domain)
         print(f"{G}[+] {C}IP Address:{W} {ip_address}")
         return ip_address
-    except socket.gaierror:
-        print(f"{R}[-] {C}Could not resolve IP address for the domain.{W}")
+    except socket.gaierror as e:
+        print(f"{R}[-] {C}Could not resolve IP address for the domain: {e}{W}")
         return None
 
 def dnsrec(domain):
@@ -37,8 +37,8 @@ def dnsrec(domain):
                 for answer in response:
                     print(f'{G}[+] {C}{record_type}:{W} {answer}')
                     result['dns'].append(f'{record_type}: {answer}')
-            except (dns.resolver.NXDOMAIN, dns.resolver.NoAnswer, dns.resolver.Timeout):
-                pass
+            except (dns.resolver.NXDOMAIN, dns.resolver.NoAnswer, dns.resolver.Timeout) as e:
+                print(f"{R}[-] {C}Error while querying DNS records: {e}{W}")
 
         dmarc_target = f'_dmarc.{domain}'
         try:
@@ -46,8 +46,8 @@ def dnsrec(domain):
             for answer in dmarc_response:
                 print(f'{G}[+] {C}DMARC:{W} {answer}')
                 result['dmarc'].append(f'DMARC: {answer}')
-        except (dns.resolver.NXDOMAIN, dns.resolver.NoAnswer, dns.resolver.Timeout):
-            pass
+        except (dns.resolver.NXDOMAIN, dns.resolver.NoAnswer, dns.resolver.Timeout) as e:
+            print(f"{R}[-] {C}Error while querying DMARC record: {e}{W}")
 
         if result['dns'] or result['dmarc']:
             result['exported'] = True
