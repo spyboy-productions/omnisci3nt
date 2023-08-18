@@ -42,7 +42,7 @@ banner = r'''
 (  <_> )  Y Y  \   |  \  |\___ \\  \___|  |/       \   |  \  |  
  \____/|__|_|  /___|  /__/____  >\___  >__/______  /___|  /__|  
              \/     \/        \/     \/          \/     \/ 
-    Unveiling the Hidden Layers of the Web – A Comprehensive Web Reconnaissance Tool.     
+    Unveiling the Hidden Layers of the Web.     
 
 '''
 
@@ -104,6 +104,9 @@ else:
     link = input_text
 
 output_filename = f"recon({link}).text"
+
+# Disable redirection of standard output temporarily
+original_stdout = sys.stdout
 with open(output_filename, "w") as output_file:
     class Tee:
         def __init__(self, *files):
@@ -118,248 +121,254 @@ with open(output_filename, "w") as output_file:
 
     sys.stdout = tee
 
-    banner2 = r'''
-    |￣￣￣￣￣￣￣￣￣￣￣￣￣|
-         Recon Started 
-    |＿＿＿＿＿＿＿＿＿＿＿＿＿|
-          \(•◡•)/ 
-           \   / 
-            ——— 
-           |   |
-           |   |
-    '''
-    #print(f"\n{R}Starting the Recon\n")
-    print(f"{G}{banner2}")
-    start_time = time.time()
+    # Your DNS resolution code here
+    # ...
 
-    ################
+# Re-enable redirection of standard output
+sys.stdout = original_stdout
 
-    ### IP Lookup
+banner2 = r'''
+|￣￣￣￣￣￣￣￣￣￣￣￣￣|
+     Recon Started 
+|＿＿＿＿＿＿＿＿＿＿＿＿＿|
+      \(•◡•)/ 
+       \   / 
+        ——— 
+       |   |
+       |   |
+'''
+#print(f"\n{R}Starting the Recon\n")
+print(f"{G}{banner2}")
+start_time = time.time()
+
+################
+
+### IP Lookup
+try:
+    print(f'\n{Y}[!] IP lookup :{W}\n')
+
+    r = requests.get(
+        f"http://ip-api.com/json/{link}?fields=status,message,continent,continentCode,country,countryCode,region,regionName,city,district,zip,lat,lon,timezone,offset,currency,isp,org,as,asname,reverse,mobile,proxy,hosting,query")
+    res = r.json()
+    countrycode = res["countryCode"]
+    country = res["country"]
+    region = res["region"]
+    regionName = res["regionName"]
+    city = res["city"]
+    lat = res["lat"]
+    lon = res["lon"]
+    time_zone = res["timezone"]
+    isp = res["isp"]
+    query = res["query"]
+    continent = res["continent"]
+    continentcode = res["continentCode"]
+    name = res["asname"]
+    zip = res["zip"]
+    proxy = res["proxy"]
+    hosting = res["hosting"]
+    mobile = res["mobile"]
+    reverse = res["reverse"]
+    district = res["district"]
+    offset = res["offset"]
+    currency = res["currency"]
+    org = res["org"]
+    status = res["status"]
+    ass = res["as"]
+
+    ip_info = (f"{G}[+] {C}IP: {W}{query}\n"
+               # f"status: {status}\n"
+               f"{G}[+] {C}continent: {W}{continent}\n"
+               f"{G}[+] {C}continent code: {W}{continentcode}\n"
+               f"{G}[+] {C}country: {W}{country}\n"
+               f"{G}[+] {C}country code: {W}{countrycode}\n"
+               f"{G}[+] {C}region name: {W}{regionName}"
+               f"{G}[+] {C}region: {W}{region}\n"
+               f"{G}[+] {C}city: {W}{city}\n"
+               f"{G}[+] {C}district: {W}{district}\n"
+               f"{G}[+] {C}zip: {W}{zip}\n"
+               f"{G}[+] {C}timezone: {time_zone}"
+               f"{G}[+] {C}name: {W}{name}\n"
+               f"{G}[+] {C}org: {W}{org}\n"
+               f"{G}[+] {C}ase: {W}{ass}"
+               f"{G}[+] {C}isp: {W}{isp}\n"
+               f"{G}[+] {C}reverse: {W}{reverse}"
+               f"{G}[+] {C}offset: {W}{offset}\n"
+               f"{G}[+] {C}currency: {W}{currency}\n"
+               f"{G}[+] {C}proxy: {W}{proxy}\n"
+               f"{G}[+] {C}hosting: {W}{hosting}\n"
+               f"{G}[+] {C}mobile: {W}{mobile}"
+               f"{G}[+] {C}latitude: {W}{lat}\n"
+               f"{G}[+] {C}longitude: {W}{lon}")
+
+    print(ip_info)
+
+except Exception as e:
+    print(e)
+
+### Header
+if __name__ == "__main__":
+    target_host = f"https://{link}"
+    fetch_headers(url=target_host)
+
+### whois lookup
     try:
-        print(f'\n{Y}[!] IP lookup :{W}\n')
+        print(f'\n{Y}[!] Whois :{W}\n')
 
-        r = requests.get(
-            f"http://ip-api.com/json/{link}?fields=status,message,continent,continentCode,country,countryCode,region,regionName,city,district,zip,lat,lon,timezone,offset,currency,isp,org,as,asname,reverse,mobile,proxy,hosting,query")
-        res = r.json()
-        countrycode = res["countryCode"]
-        country = res["country"]
-        region = res["region"]
-        regionName = res["regionName"]
-        city = res["city"]
-        lat = res["lat"]
-        lon = res["lon"]
-        time_zone = res["timezone"]
-        isp = res["isp"]
-        query = res["query"]
-        continent = res["continent"]
-        continentcode = res["continentCode"]
-        name = res["asname"]
-        zip = res["zip"]
-        proxy = res["proxy"]
-        hosting = res["hosting"]
-        mobile = res["mobile"]
-        reverse = res["reverse"]
-        district = res["district"]
-        offset = res["offset"]
-        currency = res["currency"]
-        org = res["org"]
-        status = res["status"]
-        ass = res["as"]
+        domain = whois.whois(f"{link}")
 
-        ip_info = (f"{G}[+] {C}IP: {W}{query}\n"
-                   # f"status: {status}\n"
-                   f"{G}[+] {C}continent: {W}{continent}\n"
-                   f"{G}[+] {C}continent code: {W}{continentcode}\n"
-                   f"{G}[+] {C}country: {W}{country}\n"
-                   f"{G}[+] {C}country code: {W}{countrycode}\n"
-                   f"{G}[+] {C}region name: {W}{regionName}"
-                   f"{G}[+] {C}region: {W}{region}\n"
-                   f"{G}[+] {C}city: {W}{city}\n"
-                   f"{G}[+] {C}district: {W}{district}\n"
-                   f"{G}[+] {C}zip: {W}{zip}\n"
-                   f"{G}[+] {C}timezone: {time_zone}"
-                   f"{G}[+] {C}name: {W}{name}\n"
-                   f"{G}[+] {C}org: {W}{org}\n"
-                   f"{G}[+] {C}ase: {W}{ass}"
-                   f"{G}[+] {C}isp: {W}{isp}\n"
-                   f"{G}[+] {C}reverse: {W}{reverse}"
-                   f"{G}[+] {C}offset: {W}{offset}\n"
-                   f"{G}[+] {C}currency: {W}{currency}\n"
-                   f"{G}[+] {C}proxy: {W}{proxy}\n"
-                   f"{G}[+] {C}hosting: {W}{hosting}\n"
-                   f"{G}[+] {C}mobile: {W}{mobile}"
-                   f"{G}[+] {C}latitude: {W}{lat}\n"
-                   f"{G}[+] {C}longitude: {W}{lon}")
+        domain_info = (f"{G}[+] {C}name: {W}{domain.name}\n"
+                       f"{G}[+] {C}tld: {W}{domain.tld}\n"
+                       f"{G}[+] {C}registrar: {W}{domain.registrar}\n"
+                       f"{G}[+] {C}registrant_country: {W}{domain.registrant_country}\n"
+                       f"{G}[+] {C}creation_date: {W}{domain.creation_date}\n"
+                       f"{G}[+] {C}expiration_date: {domain.expiration_date}\n"
+                       f"{G}[+] {C}last_updated: {W}{domain.last_updated}\n"
+                       f"{G}[+] {C}status: {W}{domain.status}\n"
+                       f"{G}[+] {C}statuses: {W}{domain.statuses}\n"
+                       f"{G}[+] {C}dnssec: {W}{domain.dnssec}\n"
+                       f"{G}[+] {C}registrant: {W}{domain.registrant}\n"
+                       f"{G}[+] {C}admin: {W}{domain.admin}\n"
+                       f"{G}[+] {C}owner: {W}{domain.owner}\n"
+                       f"{G}[+] {C}reseller: {W}{domain.reseller}\n"
+                       f"{G}[+] {C}emails: {W}{domain.emails}\n"
+                       f"{G}[+] {C}abuse_contact: {W}{domain.abuse_contact})")
 
-        print(ip_info)
+        print(domain_info)
 
     except Exception as e:
         print(e)
 
-    ### Header
-    if __name__ == "__main__":
-        target_host = f"https://{link}"
-        fetch_headers(url=target_host)
+### SSL certificate checker
+if __name__ == "__main__":
+    target_host = f"{link}"
+    certificate_info = get_certificate_info(target_host)
+    print_certificate_info(certificate_info)
 
-    ### whois lookup
-        try:
-            print(f'\n{Y}[!] Whois :{W}\n')
+### DNS enumeration
+if __name__ == "__main__":
+    target_host = f"{link}"
+    dnsrec(domain=target_host)
 
-            domain = whois.whois(f"{link}")
+### Shared DNS
+    try:
+        print(f'\n{Y}[!] Shared DNS :{W}\n')
+        api = requests.get(f'https://api.hackertarget.com/findshareddns/?q={link}', timeout=3).text.split('\n')
+        print(api)
 
-            domain_info = (f"{G}[+] {C}name: {W}{domain.name}\n"
-                           f"{G}[+] {C}tld: {W}{domain.tld}\n"
-                           f"{G}[+] {C}registrar: {W}{domain.registrar}\n"
-                           f"{G}[+] {C}registrant_country: {W}{domain.registrant_country}\n"
-                           f"{G}[+] {C}creation_date: {W}{domain.creation_date}\n"
-                           f"{G}[+] {C}expiration_date: {domain.expiration_date}\n"
-                           f"{G}[+] {C}last_updated: {W}{domain.last_updated}\n"
-                           f"{G}[+] {C}status: {W}{domain.status}\n"
-                           f"{G}[+] {C}statuses: {W}{domain.statuses}\n"
-                           f"{G}[+] {C}dnssec: {W}{domain.dnssec}\n"
-                           f"{G}[+] {C}registrant: {W}{domain.registrant}\n"
-                           f"{G}[+] {C}admin: {W}{domain.admin}\n"
-                           f"{G}[+] {C}owner: {W}{domain.owner}\n"
-                           f"{G}[+] {C}reseller: {W}{domain.reseller}\n"
-                           f"{G}[+] {C}emails: {W}{domain.emails}\n"
-                           f"{G}[+] {C}abuse_contact: {W}{domain.abuse_contact})")
+    except Exception as e:
+        print(e)
 
-            print(domain_info)
+### Reverse DNS
+    try:
+        print(f'\n{Y}[!] Reverse DNS :{W}\n')
+        api = requests.get(f'https://api.hackertarget.com/reversedns/?q={link}', timeout=3).text.split('\n')
+        print(api)
 
-        except Exception as e:
-            print(e)
+    except Exception as e:
+        print(e)
 
-    ### SSL certificate checker
-    if __name__ == "__main__":
-        target_host = f"{link}"
-        certificate_info = get_certificate_info(target_host)
-        print_certificate_info(certificate_info)
+### Subdomain Enumeration
+if __name__ == "__main__":
+    target_host = f"{link}"
+    print(f"\n{C}Scanning for subdomains. Please wait...")
+    find_subdomains(domain=target_host, filename='wordlist2.txt')
 
-    ### DNS enumeration
-    if __name__ == "__main__":
-        target_host = f"{link}"
-        dnsrec(domain=target_host)
+### Port scan
+if __name__ == "__main__":
+    target_host = f"{link}"
+    asyncio.run(scan_ports(target_host, threads=100))  # Await the coroutine using asyncio.run()
 
-    ### Shared DNS
-        try:
-            print(f'\n{Y}[!] Shared DNS :{W}\n')
-            api = requests.get(f'https://api.hackertarget.com/findshareddns/?q={link}', timeout=3).text.split('\n')
-            print(api)
+### Web Crawler
+if __name__ == "__main__":
+    target_host = f"https://{link}"
+    print(f'\n{Y}[!] Web Crawler :{W}\n')
+    perform_web_recon(target_host)
 
-        except Exception as e:
-            print(e)
+### Robots & sitemap Crawler
+if __name__ == "__main__":
+    target_host = f"https://{link}"
+    print(f'\n{Y}[!] Robots & sitemap :{W}\n')
+    check_website(target_host)
 
-    ### Reverse DNS
-        try:
-            print(f'\n{Y}[!] Reverse DNS :{W}\n')
-            api = requests.get(f'https://api.hackertarget.com/reversedns/?q={link}', timeout=3).text.split('\n')
-            print(api)
+### website build with
+if __name__ == "__main__":
+    website_url = f"https://{link}"
 
-        except Exception as e:
-            print(e)
+    print(f'\n{Y}[!] Website build with :{W}\n')
 
-    ### Subdomain Enumeration
-    if __name__ == "__main__":
-        target_host = f"{link}"
-        print(f"{Y}Scanning for subdomains. Please wait...")
-        find_subdomains(domain=target_host, filename='wordlist2.txt')
+    programming_languages, technologies, javascript_libraries, web_server = analyze_website(website_url)
 
-    ### Port scan
-    if __name__ == "__main__":
-        target_host = f"{link}"
-        asyncio.run(scan_ports(target_host, threads=100))  # Await the coroutine using asyncio.run()
+    if programming_languages:
+        print(f"{G}[+] {C}Detected programming languages:{W}", f", ".join(programming_languages))
+    else:
+        print(f"{R}No programming language detected or an error occurred.")
 
-    ### Web Crawler
-    if __name__ == "__main__":
-        target_host = f"https://{link}"
-        print(f'\n{Y}[!] Web Crawler :{W}\n')
-        perform_web_recon(target_host)
+    if technologies:
+        print(f"\n{G}[+] {C}Website technologies:")
+        for tech, details in technologies.items():
+            print(f"{W}{tech}: {details}")
+    else:
+        print(f"{R}An error occurred while fetching technologies.")
 
-    ### Robots & sitemap Crawler
-    if __name__ == "__main__":
-        target_host = f"https://{link}"
-        print(f'\n{Y}[!] Robots & sitemap :{W}\n')
-        check_website(target_host)
+    if javascript_libraries:
+        print(f"\n{G}[+] {C}JavaScript libraries:")
+        for library in javascript_libraries:
+            print(f"{W}- " + library)
+    else:
+        print(f"{R}No JavaScript libraries detected.")
 
-    ### website build with
-    if __name__ == "__main__":
-        website_url = f"https://{link}"
-
-        print(f'\n{Y}[!] Website build with :{W}\n')
-
-        programming_languages, technologies, javascript_libraries, web_server = analyze_website(website_url)
-
-        if programming_languages:
-            print(f"{G}[+] {C}Detected programming languages:{W}", f", ".join(programming_languages))
-        else:
-            print(f"{R}No programming language detected or an error occurred.")
-
-        if technologies:
-            print(f"\n{G}[+] {C}Website technologies:")
-            for tech, details in technologies.items():
-                print(f"{W}{tech}: {details}")
-        else:
-            print(f"{R}An error occurred while fetching technologies.")
-
-        if javascript_libraries:
-            print(f"\n{G}[+] {C}JavaScript libraries:")
-            for library in javascript_libraries:
-                print(f"{W}- " + library)
-        else:
-            print(f"{R}No JavaScript libraries detected.")
-
-        print(f"\n{G}[+] {C}Web server:", f"{W}{web_server}")
+    print(f"\n{G}[+] {C}Web server:", f"{W}{web_server}")
 
 
-    ### Wayback
-    if __name__ == "__main__":
-        target_host = f"{link}"
-        print(f'\n{Y}[!] Wayback :{W}\n')
-        fetch_wayback_links(target=target_host)
+### Wayback
+if __name__ == "__main__":
+    target_host = f"{link}"
+    print(f'\n{Y}[!] Wayback :{W}\n')
+    fetch_wayback_links(target=target_host)
 
-    ### DMARC Record
-    if __name__ == "__main__":
-        target_host = f"{link}"
-        fetch_dmarc_links(domain=target_host)
+### DMARC Record
+if __name__ == "__main__":
+    target_host = f"{link}"
+    fetch_dmarc_links(domain=target_host)
 
-    ### Social media links
-    if __name__ == "__main__":
-        target_host = f"https://{link}"
-        print(f'\n{Y}[!] Social media links :{W}\n')
-        social_media_links, emails = extract_links_and_emails(target_host)
+### Social media links
+if __name__ == "__main__":
+    target_host = f"https://{link}"
+    print(f'\n{Y}[!] Social media links :{W}\n')
+    social_media_links, emails = extract_links_and_emails(target_host)
 
-        if social_media_links:
-            print("Social media links:")
-            for link in social_media_links:
-                print(link)
-        else:
-            print("No social media links found or an error occurred.")
+    if social_media_links:
+        print("Social media links:")
+        for link in social_media_links:
+            print(link)
+    else:
+        print("No social media links found or an error occurred.")
 
-        if emails:
-            print("\nEmail addresses:")
-            for email in emails:
-                print(email)
-        else:
-            print("No email addresses found or an error occurred.")
+    if emails:
+        print("\nEmail addresses:")
+        for email in emails:
+            print(email)
+    else:
+        print("No email addresses found or an error occurred.")
 
-    ### Completed!!
+### Completed!!
 
-    end_time = time.time()
-    elapsed_time = end_time - start_time
+end_time = time.time()
+elapsed_time = end_time - start_time
 
-    banner3 = r'''
-    ￣￣￣￣￣￣￣￣￣￣￣￣￣￣
-       Recon completed                        
-    ＿＿＿＿＿＿＿＿＿＿＿＿＿＿ 
-    (\__/) || 
-    (•ㅅ•) || 
-    / 　 づ
+banner3 = r'''
+￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+   Recon completed                        
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿ 
+(\__/) || 
+(•ㅅ•) || 
+/ 　 づ
 
-    '''
-    print(f"{R}{banner3}")
-    #print(f"\n{R}Recon completed\n")
-    print(f"{G}[+] {C}Date: {W}{formatted_date}")
-    print(f"{G}[+] {C}Time taken: {W}{elapsed_time:.2f} seconds")
-    sys.stdout = sys.__stdout__  # Restore standard output
+'''
+print(f"{R}{banner3}")
+#print(f"\n{R}Recon completed\n")
+print(f"{G}[+] {C}Date: {W}{formatted_date}")
+print(f"{G}[+] {C}Time taken: {W}{elapsed_time:.2f} seconds")
+sys.stdout = sys.__stdout__  # Restore standard output
 
 print(f"{G}[+] {C}Output saved to '{output_filename}'")
