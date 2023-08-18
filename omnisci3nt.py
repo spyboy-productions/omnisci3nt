@@ -77,6 +77,8 @@ async def run(ip, threads):
 
     await asyncio.gather(*tasks, return_exceptions=True)  # Added return_exceptions=True
 
+    print(f"\n{G}[+] {C}Total Port Scanned:{W} 1001")
+
     print(f'\n{Y}[!] {C}Scanning completed! Open ports:{W} {result["ports"]}\n')
 
 async def scan_ports(ip, threads=100):
