@@ -1,6 +1,7 @@
 import requests
 from colorama import init, Fore
 import threading
+import time
 
 R = '\033[31m'  # red
 G = '\033[32m'  # green
@@ -22,15 +23,16 @@ def find_subdomains(domain, filename, timeout=20):
             if response.status_code == 200:
                 with subdomains_lock:
                     subdomains_found.append(subdomain_url)
-                print(f"{Fore.GREEN}Subdomain Found [+]: {subdomain_url}{Fore.RESET}")
+                    print(f"{Fore.GREEN}Subdomain Found [+]: {subdomain_url}{Fore.RESET}")
         except requests.exceptions.RequestException as e:
             if "Max retries exceeded with url" in str(e):
-                print(f"{Fore.RED}Subdomain Not Found [-]: {subdomain_url}{Fore.RESET}")
+                pass
 
     with open(filename, "r") as file:
         subdomains = [line.strip() for line in file.readlines()]
 
     print(f"{Y}Starting threads...")
+    start_time = time.time()
 
     threads = []
     for subdomain in subdomains:
@@ -38,12 +40,14 @@ def find_subdomains(domain, filename, timeout=20):
         threads.append(thread)
         thread.start()
 
-    print(f"{Y}Waiting for threads to finish...")
-
     for thread in threads:
         thread.join()
 
-    print(f"\n{G}[+] {C}Total Subdomains Found: {len(subdomains_found)}")
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    print(f"{G}[+] {C}Total Subdomains Scanned:{W} 781")
+    print(f"{G}[+] {C}Total Subdomains Found:{W} {len(subdomains_found)}")
+    print(f"{G}[+] {C}Time taken:{W} {elapsed_time:.2f} seconds")
     print("\nSubdomains Found Links:")
     for link in subdomains_found:
         print(link)
@@ -51,4 +55,5 @@ def find_subdomains(domain, filename, timeout=20):
 if __name__ == "__main__":
     domain = "youtube.com"
     filename = "wordlist2.txt"
+    print(f"{Y}Scanning for subdomains. Please wait...{Fore.RESET}")
     find_subdomains(domain, filename)
