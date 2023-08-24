@@ -31,7 +31,7 @@ Omnisci3nt is a powerful web reconnaissance tool designed to unravel the conceal
 
 Whether you're a cybersecurity professional, researcher, or individual seeking to gain insights into a particular domain, Omnisci3nt's versatile toolkit offers a comprehensive solution for navigating the intricate landscape of the web.
 
-**Key Features:**
+### ⭔ Key Features:
 
 - IP Lookup: Retrieve geographic and network-related information.
 - WHOIS Lookup: Disclose domain registration details.
