@@ -26,6 +26,7 @@ twitter_url = 'https://spyboy.in/twitter'
 discord = 'https://spyboy.in/Discord'
 website = 'https://spyboy.in/'
 blog = 'https://spyboy.blog/'
+github = 'https://github.com/spyboy-productions/omnisci3nt'
 
 VERSION = '1.0.1'
 
