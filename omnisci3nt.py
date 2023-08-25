@@ -57,7 +57,7 @@ def print_banners():
     print(f'{G} ╰➤ {Y}Twitter      : {W}{twitter_url}')
     print(f'{G} ╰➤ {Y}Discord      : {W}{discord}')
     print(f'{G} ╰➤ {Y}Website      : {W}{website}')
-    print(f'{G} ╰➤ {Y}Blog         : {W}{blog}\n')
+    print(f'{G} ╰➤ {Y}Blog         : {W}{blog}')
     print(f'{G} ╰➤ {Y}Github       : {W}{github}\n')
 
 ######
