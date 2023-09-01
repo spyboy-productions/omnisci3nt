@@ -211,7 +211,7 @@ with open(output_filename, "w") as output_file:
 
             domain = whois.whois(f"{link}")
 
-            domain_info = (f"{G}[+] {C}name: {W}{domain.name}\n"
+            '''domain_info = (f"{G}[+] {C}name: {W}{domain.name}\n"
                            f"{G}[+] {C}tld: {W}{domain.tld}\n"
                            f"{G}[+] {C}registrar: {W}{domain.registrar}\n"
                            f"{G}[+] {C}registrant_country: {W}{domain.registrant_country}\n"
@@ -226,9 +226,9 @@ with open(output_filename, "w") as output_file:
                            f"{G}[+] {C}owner: {W}{domain.owner}\n"
                            f"{G}[+] {C}reseller: {W}{domain.reseller}\n"
                            f"{G}[+] {C}emails: {W}{domain.emails}\n"
-                           f"{G}[+] {C}abuse_contact: {W}{domain.abuse_contact})")
+                           f"{G}[+] {C}abuse_contact: {W}{domain.abuse_contact})")'''
 
-            print(domain_info)
+            print(f"{G}{domain}")
 
         except Exception as e:
             print(e)
