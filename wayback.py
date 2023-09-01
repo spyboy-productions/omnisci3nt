@@ -17,7 +17,7 @@ WAYBACK_SEARCH_URL = 'http://web.archive.org/cdx/search/cdx'
 
 
 def print_status(status, color, message):
-    print(f'{Colors.YELLOW}[!] {Colors.CYAN}{message}', end='', flush=True)
+    print(f'{Colors.YELLOW}[!] {Colors.CYAN}{message}', end='') #, flush=True
     print(f'{color}[' + '.'.rjust(5, '.') + f' {status} ]{Colors.WHITE}')
 
 
