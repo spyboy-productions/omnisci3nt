@@ -19,12 +19,12 @@ def get_certificate_info(hostname, port=443, timeout=10):
 
 
 def print_certificate_info(certificate):
-    print(f'\n{Y}[!] SSL Certificate Information  :{W}\n')
-    #print(f"{G}[+] {C}Certificate Information:")
-    print(f"{G}[+] {C}Subject:{W}", dict(x[0] for x in certificate['subject']))
-    print(f"{G}[+] {C}Issuer:{W}", dict(x[0] for x in certificate['issuer']))
-    print(f"{G}[+] {C}Valid From:{W}", certificate['notBefore'])
-    print(f"{G}[+] {C}Valid Until:{W}", certificate['notAfter'])
+    print(f'\n{Y}[~] SSL Certificate Information  :{W}\n')
+    #print(f"{G}╰➤ {C}Certificate Information:")
+    print(f"{G}╰➤ {C}Subject:{W}", dict(x[0] for x in certificate['subject']))
+    print(f"{G}╰➤ {C}Issuer:{W}", dict(x[0] for x in certificate['issuer']))
+    print(f"{G}╰➤ {C}Valid From:{W}", certificate['notBefore'])
+    print(f"{G}╰➤ {C}Valid Until:{W}", certificate['notAfter'])
 
 
 if __name__ == "__main__":

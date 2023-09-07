@@ -12,10 +12,10 @@ def fetch_headers(url):
     try:
         response = requests.get(url, verify=True, timeout=10)  # Enable certificate verification
         headers = response.headers
-        print(f'\n{Y}[!] Headers :{W}\n')
+        print(f'\n{Y}[~] Headers :{W}\n')
         for key, value in headers.items():
             result[key] = value
-            print(f'{G}[+] {C}{key}:{W} {value}')
+            print(f'{G}╰➤ {C}{key}:{W} {value}')
     except requests.exceptions.RequestException as e:
         print(f'\n{R}[-] {C}Exception :{W} {e}\n')
         result['Exception'] = str(e)
