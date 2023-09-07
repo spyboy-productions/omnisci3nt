@@ -4,3 +4,4 @@ dnspython
 beautifulsoup4
 builtwith
 colorama
+aiohttp
