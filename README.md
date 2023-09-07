@@ -38,7 +38,8 @@ Whether you're a cybersecurity professional, researcher, or individual seeking t
 - SSL Certificate Inspection: Gain insights into encryption protocols.
 - DNS Enumeration: Explore domain-related DNS records.
 - Subdomain Enumeration: Uncover subdomains associated with the target.
-- Port Scanning: Scan top 1000 ports for potential vulnerabilities.
+- Port Scanning: Scan the top 1000 ports for potential vulnerabilities.
+- Directory Enumeration: Find and list the files and directories.
 - Web Crawling: Analyze the target website's structure and content.
 - Technology Analysis: Identify programming languages, technologies, and libraries.
 - Wayback Machine Access: Explore archived versions of the website.
