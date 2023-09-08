@@ -23,8 +23,6 @@
 
 Omnisci3nt equips users with a comprehensive toolkit for conducting web reconnaissance with precision and efficiency.
 
-<h4 align="center"> This tool is a Proof of Concept and is for Educational Purposes Only. </h4> 
-
 ---
 
 Omnisci3nt is a powerful web reconnaissance tool designed to unravel the concealed intricacies of the online realm. With a comprehensive array of capabilities, Omnisci3nt offers users the means to delve into various aspects of a target domain, including IP lookup, domain information, SSL certificate details, DNS enumeration, subdomain enumeration, port scanning, web crawling, analysis of technologies utilized, Wayback Machine exploration, DMARC record examination, social media link discovery, and more.
