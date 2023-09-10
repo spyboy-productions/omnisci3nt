@@ -79,7 +79,7 @@ python3 omnisci3nt.py
 ```
 
 ---
-#### 🏃‍♀️ Run it online here: coming soon
+#### 🏃‍♀️ Run it online here: https://replit.com/@spyb0y/omnisci3nt?v=1
 
 #### 💬 If having issue [Chat here](https://discord.gg/ZChEmMwE8d)
 [![Discord Server](https://discord.com/api/guilds/726495265330298973/embed.png)](https://discord.gg/ZChEmMwE8d)
