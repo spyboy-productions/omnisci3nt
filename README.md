@@ -19,8 +19,6 @@
 
 <img width="100%" align="centre" src="https://cdn.discordapp.com/attachments/1141162711464550430/1141300142440468510/omnisci3nt.png" />
 
-<h4 align="center"> Unveiling the Hidden Layers of the Web – A Comprehensive Web Reconnaissance Tool. </h4>
-
 Omnisci3nt equips users with a comprehensive toolkit for conducting web reconnaissance with precision and efficiency.
 
 ---
