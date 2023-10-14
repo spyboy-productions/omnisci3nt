@@ -78,7 +78,9 @@ python3 omnisci3nt.py
 ```
 
 ---
-#### 🏃‍♀️ Run it online here: https://replit.com/@spyb0y/omnisci3nt?v=1
+#### 🏃‍♀️ For the Demo Run it online here: https://replit.com/@spyb0y/omnisci3nt?v=1
+
+`For the best experience and to utilize the tool's full potential, install it.`
 
 #### 💬 If having an issue [Chat here](https://discord.gg/ZChEmMwE8d)
 [![Discord Server](https://discord.com/api/guilds/726495265330298973/embed.png)](https://discord.gg/ZChEmMwE8d)
