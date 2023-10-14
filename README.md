@@ -29,19 +29,19 @@ Whether you're a cybersecurity professional, researcher, or individual seeking t
 
 ### ⭔ Key Features:
 
-- IP Lookup: Retrieve geographic and network-related information.
-- WHOIS Lookup: Disclose domain registration details.
-- SSL Certificate Inspection: Gain insights into encryption protocols.
-- DNS Enumeration: Explore domain-related DNS records.
-- Subdomain Enumeration: Uncover subdomains associated with the target.
-- Port Scanning: Scan the top 1000 ports for potential vulnerabilities.
-- Directory Enumeration: Find and list the files and directories.
-- Web Crawling: Analyze the target website's structure and content.
-- Technology Analysis: Identify programming languages, technologies, and libraries.
-- Wayback Machine Access: Explore archived versions of the website.
-- DMARC Record Examination: Understand email security measures.
-- Social Media and Email Discovery: Uncover associated links and addresses.
-- Admin panel: Find the admin panel of the website / Admin Login Page
+- **IP Lookup**: Retrieve geographic and network-related information.
+- **WHOIS Lookup**: Disclose domain registration details.
+- **SSL Certificate Inspection**: Gain insights into encryption protocols.
+- **DNS Enumeration**: Explore domain-related DNS records.
+- **Subdomain Enumeration**: Uncover subdomains associated with the target.
+- **Port Scanning**: Scan the top 1000 ports for potential vulnerabilities.
+- **Directory Enumeration**: Find and list the files and directories.
+- **Web Crawling**: Analyze the target website's structure and content.
+- **Technology Analysis**: Identify programming languages, technologies, and libraries.
+- W**ayback Machine Access**: Explore archived versions of the website.
+- **DMARC Record Examination**: Understand email security measures.
+- S**ocial Media and Email Discovery**: Uncover associated links and addresses.
+- **Admin panel**: Find the admin panel of the website / Admin Login Page
 
 ---
 
