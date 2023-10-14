@@ -30,8 +30,8 @@ def check_website(website_url, timeout=10):
 
             if sitemap_response.status_code == 200:
                 print(f"\n{G}╰➤ {C}Sitemap URL:", sitemap_url)
-                print(f"{G}╰➤ {C}Sitemap content:")
-                print(f"{W}{sitemap_response.text}")
+                #print(f"{G}╰➤ {C}Sitemap content:")
+                #print(f"{W}{sitemap_response.text}")
             else:
                 print(f"\n{R}Failed to fetch sitemap. Status code:", sitemap_response.status_code)
         else:

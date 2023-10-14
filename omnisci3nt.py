@@ -22,6 +22,7 @@ from social_media import extract_links_and_emails
 from sdomain import find_subdomains
 import dirtest
 from portscan import ps
+from admin_finder import find_admin_panels
 
 current_date = datetime.now().date()
 formatted_date = current_date.strftime("%Y-%m-%d")
@@ -32,7 +33,7 @@ website = 'https://spyboy.in/'
 blog = 'https://spyboy.blog/'
 github = 'https://github.com/spyboy-productions/omnisci3nt'
 
-VERSION = '1.0.1'
+VERSION = '1.0.2'
 
 R = '\033[31m'  # red
 G = '\033[32m'  # green
@@ -213,7 +214,7 @@ with open(output_filename, "w") as output_file:
     ### SSL certificate checker
     if __name__ == "__main__":
         try:
-            target_host = f"{link}"
+            target_host = f"{link}".strip()
             certificate_info = get_certificate_info(target_host)
             print_certificate_info(certificate_info)
         except Exception as e:
@@ -360,6 +361,27 @@ with open(output_filename, "w") as output_file:
 
             # Call the functions from your_module here
             dirtest.start_scan(target, threads, tout, wdlist, redir, sslv, dserv, output, data, filext)
+
+        except Exception as e:
+            print(e)
+
+    ### Amin_panel_finder
+    if __name__ == "__main__":
+        try:
+            print(f'\n{Y}[~] Admin LogIn Panel:{W}\n')
+            print(f"\n{C}Scanning for Login Page. Please wait...")
+
+            target_url = f"https://{link}"
+            paths_file = 'paths.txt'
+            num_threads = int('30')
+
+            with open(paths_file, 'r') as file:
+                paths = file.read()
+
+            result = find_admin_panels(target_url, paths, num_threads)
+
+            for line in result:
+                print(line)
 
         except Exception as e:
             print(e)
