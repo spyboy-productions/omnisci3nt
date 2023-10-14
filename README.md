@@ -41,7 +41,7 @@ Whether you're a cybersecurity professional, researcher, or individual seeking t
 - Wayback Machine Access: Explore archived versions of the website.
 - DMARC Record Examination: Understand email security measures.
 - Social Media and Email Discovery: Uncover associated links and addresses.
-- Admin panel: Find admin panel of the website / Admin Login Page
+- Admin panel: Find the admin panel of the website / Admin Login Page
 
 ---
 
