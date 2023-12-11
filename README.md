@@ -86,6 +86,15 @@ python3 omnisci3nt.py
 
 Contributions and feature requests are welcome! If you encounter any issues or have ideas for improvement, feel free to open an issue or submit a pull request.
 
+#### ToDo:
+
+- make seprate cmd for all module
+- add urlscan.io
+- spoof check (mx record checkup) if domain email is spoofable
+- reverse IP lookup
+- banner grabbing
+- CVE reporting (check for top vulnerability)
+
 #### 💬 If having an issue [Chat here](https://discord.gg/ZChEmMwE8d)
 [![Discord Server](https://discord.com/api/guilds/726495265330298973/embed.png)](https://discord.gg/ZChEmMwE8d)
 
