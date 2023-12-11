@@ -86,7 +86,7 @@ python3 omnisci3nt.py
 
 Contributions and feature requests are welcome! If you encounter any issues or have ideas for improvement, feel free to open an issue or submit a pull request.
 
-#### ToDo:
+#### 😴🥱😪💤 ToDo:
 
 - make seprate cmd for all module
 - add urlscan.io
