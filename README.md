@@ -27,6 +27,12 @@ Omnisci3nt is a powerful web reconnaissance tool designed to unravel the conceal
 
 Whether you're a cybersecurity professional, researcher, or individual seeking to gain insights into a particular domain, Omnisci3nt's versatile toolkit offers a comprehensive solution for navigating the intricate landscape of the web.
 
+### Run Online Free On Google Colab
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github//spyboy-productions/omnisci3nt/blob/main/omnisci3nt.ipynb)
+
+`For the best experience and to utilize the tool's full potential, install it.`
+
 ### ⭔ Key Features:
 
 - **IP Lookup**: Retrieve geographic and network-related information.
@@ -78,9 +84,6 @@ python3 omnisci3nt.py
 ```
 
 ---
-#### 🏃‍♀️ For the Demo Run it online here: https://replit.com/@spyb0y/omnisci3nt?v=1
-
-`For the best experience and to utilize the tool's full potential, install it.`
 
 ## Contribution:
 
