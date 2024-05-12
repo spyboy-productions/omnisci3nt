@@ -143,30 +143,30 @@ with open(output_filename, "w") as output_file:
         status = res["status"]
         ass = res["as"]
 
-        ip_info = (f"{G}\u2514\u27A4 {C}IP: {W}{query}\n"
+        ip_info = (f"{G}[+] {C}IP: {W}{query}\n"
                    # f"status: {status}\n"
-                   f"{G}\u2514\u27A4 {C}continent: {W}{continent}\n"
-                   f"{G}\u2514\u27A4 {C}continent code: {W}{continentcode}\n"
-                   f"{G}\u2514\u27A4 {C}country: {W}{country}\n"
-                   f"{G}\u2514\u27A4 {C}country code: {W}{countrycode}\n"
-                   f"{G}\u2514\u27A4 {C}region name: {W}{regionName}\n"
-                   f"{G}\u2514\u27A4 {C}region: {W}{region}\n"
-                   f"{G}\u2514\u27A4 {C}city: {W}{city}\n"
-                   f"{G}\u2514\u27A4 {C}district: {W}{district}\n"
-                   f"{G}\u2514\u27A4 {C}zip: {W}{zip}\n"
-                   f"{G}\u2514\u27A4 {C}timezone: {time_zone}\n"
-                   f"{G}\u2514\u27A4 {C}name: {W}{name}\n"
-                   f"{G}\u2514\u27A4 {C}org: {W}{org}\n"
-                   f"{G}\u2514\u27A4 {C}ase: {W}{ass}\n"
-                   f"{G}\u2514\u27A4 {C}isp: {W}{isp}\n"
-                   f"{G}\u2514\u27A4 {C}reverse: {W}{reverse}\n"
-                   f"{G}\u2514\u27A4 {C}offset: {W}{offset}\n"
-                   f"{G}\u2514\u27A4 {C}currency: {W}{currency}\n"
-                   f"{G}\u2514\u27A4 {C}proxy: {W}{proxy}\n"
-                   f"{G}\u2514\u27A4 {C}hosting: {W}{hosting}\n"
-                   f"{G}\u2514\u27A4 {C}mobile: {W}{mobile}\n"
-                   f"{G}\u2514\u27A4 {C}latitude: {W}{lat}\n"
-                   f"{G}\u2514\u27A4 {C}longitude: {W}{lon}")
+                   f"{G}[+] {C}continent: {W}{continent}\n"
+                   f"{G}[+] {C}continent code: {W}{continentcode}\n"
+                   f"{G}[+] {C}country: {W}{country}\n"
+                   f"{G}[+] {C}country code: {W}{countrycode}\n"
+                   f"{G}[+] {C}region name: {W}{regionName}\n"
+                   f"{G}[+] {C}region: {W}{region}\n"
+                   f"{G}[+] {C}city: {W}{city}\n"
+                   f"{G}[+] {C}district: {W}{district}\n"
+                   f"{G}[+] {C}zip: {W}{zip}\n"
+                   f"{G}[+] {C}timezone: {time_zone}\n"
+                   f"{G}[+] {C}name: {W}{name}\n"
+                   f"{G}[+] {C}org: {W}{org}\n"
+                   f"{G}[+] {C}ase: {W}{ass}\n"
+                   f"{G}[+] {C}isp: {W}{isp}\n"
+                   f"{G}[+] {C}reverse: {W}{reverse}\n"
+                   f"{G}[+] {C}offset: {W}{offset}\n"
+                   f"{G}[+] {C}currency: {W}{currency}\n"
+                   f"{G}[+] {C}proxy: {W}{proxy}\n"
+                   f"{G}[+] {C}hosting: {W}{hosting}\n"
+                   f"{G}[+] {C}mobile: {W}{mobile}\n"
+                   f"{G}[+] {C}latitude: {W}{lat}\n"
+                   f"{G}[+] {C}longitude: {W}{lon}")
 
         print(ip_info)
 
@@ -423,4 +423,4 @@ with open(output_filename, "w") as output_file:
     print(f"{G}[+] {C}Time taken: {W}{elapsed_time:.2f} seconds")
     sys.stdout = sys.__stdout__  # Restore standard output
 
-print(f"\n{G}\u2514\u27A4 {C}Output saved to '{output_filename}'")
+print(f"\n{G}[~] {C}Output saved to '{output_filename}'\n")

@@ -23,7 +23,7 @@ def find_subdomains(domain, filename, timeout=20):
             if response.status_code == 200:
                 with subdomains_lock:
                     subdomains_found.append(subdomain_url)
-                    print(f"{Fore.GREEN}Subdomain Found ╰➤: {subdomain_url}{Fore.RESET}")
+                    print(f"{Fore.GREEN}Subdomain Found [+]: {subdomain_url}{Fore.RESET}")
         except requests.exceptions.RequestException as e:
             if "Max retries exceeded with url" in str(e):
                 pass
