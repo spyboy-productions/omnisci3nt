@@ -294,25 +294,25 @@ with open(output_filename, "w") as output_file:
             programming_languages, technologies, javascript_libraries, web_server = analyze_website(website_url)
 
             if programming_languages:
-                print(f"{G}\u2514\u27A4 {C}Detected programming languages:{W}", f", ".join(programming_languages))
+                print(f"{G}[+] {C}Detected programming languages:{W}", f", ".join(programming_languages))
             else:
                 print(f"{R}No programming language detected or an error occurred.")
 
             if technologies:
-                print(f"\n{G}\u2514\u27A4 {C}Website technologies:")
+                print(f"\n{G}[+] {C}Website technologies:")
                 for tech, details in technologies.items():
                     print(f"{W}{tech}: {details}")
             else:
                 print(f"{R}An error occurred while fetching technologies.")
 
             if javascript_libraries:
-                print(f"\n{G}\u2514\u27A4 {C}JavaScript libraries:")
+                print(f"\n{G}[+] {C}JavaScript libraries:")
                 for library in javascript_libraries:
                     print(f"{W}- " + library)
             else:
                 print(f"{R}No JavaScript libraries detected.")
 
-            print(f"\n{G}\u2514\u27A4 {C}Web server:", f"{W}{web_server}")
+            print(f"\n{G}[+] {C}Web server:", f"{W}{web_server}")
 
         except Exception as e:
             print(e)
@@ -419,8 +419,8 @@ with open(output_filename, "w") as output_file:
     '''
     print(f"{G}{banner3}")
     #print(f"\n{R}Recon completed\n")
-    print(f"{G}\u2514\u27A4 {C}Date: {W}{formatted_date}")
-    print(f"{G}\u2514\u27A4 {C}Time taken: {W}{elapsed_time:.2f} seconds")
+    print(f"{G}[+] {C}Date: {W}{formatted_date}")
+    print(f"{G}[+] {C}Time taken: {W}{elapsed_time:.2f} seconds")
     sys.stdout = sys.__stdout__  # Restore standard output
 
-print(f"{G}\u2514\u27A4 {C}Output saved to '{output_filename}'")
+print(f"\n{G}\u2514\u27A4 {C}Output saved to '{output_filename}'")

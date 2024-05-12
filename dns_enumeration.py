@@ -10,7 +10,7 @@ Y = '\033[33m'  # yellow
 def get_domain_ip(domain):
     try:
         ip_address = socket.gethostbyname(domain)
-        print(f"{G}\u2514\u27A4 {C}IP Address:{W} {ip_address}")
+        print(f"{G}[+] {C}IP Address:{W} {ip_address}")
         return ip_address
     except socket.gaierror:
         print(f"{R}[-] {C}Could not resolve IP address for the domain.{W}")
@@ -35,7 +35,7 @@ def dnsrec(domain):
             try:
                 response = resolver.query(domain, record_type)
                 for answer in response:
-                    print(f'{G}\u2514\u27A4 {C}{record_type}:{W} {answer}')
+                    print(f'{G}[+] {C}{record_type}:{W} {answer}')
                     result['dns'].append(f'{record_type}: {answer}')
             except (dns.resolver.NXDOMAIN, dns.resolver.NoAnswer, dns.resolver.Timeout):
                 pass
@@ -44,7 +44,7 @@ def dnsrec(domain):
         try:
             dmarc_response = resolver.query(dmarc_target, 'TXT')
             for answer in dmarc_response:
-                print(f'{G}\u2514\u27A4 {C}DMARC:{W} {answer}')
+                print(f'{G}[+] {C}DMARC:{W} {answer}')
                 result['dmarc'].append(f'DMARC: {answer}')
         except (dns.resolver.NXDOMAIN, dns.resolver.NoAnswer, dns.resolver.Timeout):
             pass

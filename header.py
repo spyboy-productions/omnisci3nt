@@ -15,7 +15,7 @@ def fetch_headers(url):
         print(f'\n{Y}[~] Headers :{W}\n')
         for key, value in headers.items():
             result[key] = value
-            print(f'{G}\u2514\u27A4 {C}{key}:{W} {value}')
+            print(f'{G}[+] {C}{key}:{W} {value}')
     except requests.exceptions.RequestException as e:
         print(f'\n{R}[-] {C}Exception :{W} {e}\n')
         result['Exception'] = str(e)

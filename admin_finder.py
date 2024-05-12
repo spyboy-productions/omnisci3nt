@@ -73,15 +73,15 @@ def find_admin_panels(target_url, paths, num_threads):
             hosting_location = domain_info.org
 
             if hosting_location:
-                result.append(f'{G}\u2514\u27A4{G} The website is hosted by: {hosting_location}')
+                result.append(f'{G}[+] {C} The website is hosted by: {hosting_location}')
             else:
                 #result.append(f'{G}\u2514\u27A4{R} Hosting location information not available.')
                 potential_admin_panel_link = generate_admin_panel_link(domain)
-                result.append(f'{G}\u2514\u27A4{Y} You can try the potential admin panel link:{W} {potential_admin_panel_link}')
+                result.append(f'{G}[+] {Y} You can try the potential admin panel link:{W} {potential_admin_panel_link}')
                 potential_admin_panel_link = generate_admin_panel_link(domain_ip)
-                result.append(f'\n{G}\u2514\u27A4{Y} You can try the potential admin panel link:{W} {potential_admin_panel_link}')
+                result.append(f'\n{G}[+] {Y} You can try the potential admin panel link:{W} {potential_admin_panel_link}')
 
         except Exception as e:
-            result.append(f'{G}\u2514\u27A4{R} Failed to determine hosting location and generate a potential admin panel link. Error: {e}')
+            result.append(f'{G}[+] {R} Failed to determine hosting location and generate a potential admin panel link. Error: {e}')
 
     return result

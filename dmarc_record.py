@@ -25,10 +25,10 @@ def fetch_dmarc_links(domain):
 
         return links
     except (dns.resolver.NXDOMAIN, dns.resolver.NoAnswer):
-        print(f"{G}\u2514\u27A4 {R}No DMARC record found for {domain}")
+        print(f"{G}[+] {R}No DMARC record found for {domain}")
         return []
     except dns.exception.DNSException as e:
-        print(f"{G}\u2514\u27A4 {R}An error occurred: {e}")
+        print(f"{G}[+] {R}An error occurred: {e}")
         return []
 
 if __name__ == "__main__":
