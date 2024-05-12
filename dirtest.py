@@ -100,24 +100,24 @@ def print_directory_output(output, data):
                 if output != 'None':
                     result.setdefault('Status 403', []).append(f'{entry[1]}, {entry[0]}')
 
-    print(f'\n\n{GREEN}╰➤ {CYAN}Directories Found   : {WHITE}{len(found)}')
+    print(f'\n\n{GREEN}\u2514\u27A4 {CYAN}Directories Found   : {WHITE}{len(found)}')
 
 
 def start_scan(target, num_threads, timeout, wordlist, allow_redirects, ssl_verification, dns_servers, output, data,
                file_extensions):
     print(f'\n{YELLOW}[~] Starting Directory Enum...{WHITE}\n')
-    print(f'{GREEN}╰➤ {CYAN}Threads          : {WHITE}{num_threads}')
-    print(f'{GREEN}╰➤ {CYAN}Timeout          : {WHITE}{timeout}')
-    print(f'{GREEN}╰➤ {CYAN}Wordlist         : {WHITE}{wordlist}')
-    print(f'{GREEN}╰➤ {CYAN}Allow Redirects  : {WHITE}{allow_redirects}')
-    print(f'{GREEN}╰➤ {CYAN}SSL Verification : {WHITE}{ssl_verification}')
-    print(f'{GREEN}╰➤ {CYAN}DNS Servers      : {WHITE}{dns_servers}')
+    print(f'{GREEN}\u2514\u27A4 {CYAN}Threads          : {WHITE}{num_threads}')
+    print(f'{GREEN}\u2514\u27A4 {CYAN}Timeout          : {WHITE}{timeout}')
+    print(f'{GREEN}\u2514\u27A4 {CYAN}Wordlist         : {WHITE}{wordlist}')
+    print(f'{GREEN}\u2514\u27A4 {CYAN}Allow Redirects  : {WHITE}{allow_redirects}')
+    print(f'{GREEN}\u2514\u27A4 {CYAN}SSL Verification : {WHITE}{ssl_verification}')
+    print(f'{GREEN}\u2514\u27A4 {CYAN}DNS Servers      : {WHITE}{dns_servers}')
 
     with open(wordlist, 'r') as wordlist_file:
         num_words = sum(1 for _ in wordlist_file)
 
-    print(f'{GREEN}╰➤ {CYAN}Wordlist Size    : {WHITE}{num_words}')
-    print(f'{GREEN}╰➤ {CYAN}File Extensions  : {WHITE}{file_extensions}\n')
+    print(f'{GREEN}\u2514\u27A4 {CYAN}Wordlist Size    : {WHITE}{num_words}')
+    print(f'{GREEN}\u2514\u27A4 {CYAN}File Extensions  : {WHITE}{file_extensions}\n')
 
     if file_extensions:
         total_num_words = num_words * (len(file_extensions.split(',')) + 1)

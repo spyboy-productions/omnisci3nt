@@ -14,7 +14,7 @@ async def sock_conn(ip, port, result):
         connector = asyncio.open_connection(ip, port)
         await asyncio.wait_for(connector, timeout=1)
         result['ports'].append(port)
-        print(f'\x1b[K{G}╰➤ {C}{port}{W}')
+        print(f'\x1b[K{G}\u2514\u27A4 {C}{port}{W}')
     except (TimeoutError, ConnectionRefusedError):
         pass
 

@@ -65,31 +65,31 @@ def perform_web_recon(website_url):
                     external_links.add(full_url)
 
         # Print the URLs
-        print(f"{G}╰➤ {C}JS Files:{W}")
+        print(f"{G}\u2514\u27A4 {C}JS Files:{W}")
         for js_file in js_files:
             print(js_file)
 
-        print(f"\n{G}╰➤ {C}CSS Files:{W}")
+        print(f"\n{G}\u2514\u27A4 {C}CSS Files:{W}")
         for css_file in css_files:
             print(css_file)
 
-        print(f"\n{G}╰➤ {C}HTML Files:{W}")
+        print(f"\n{G}\u2514\u27A4 {C}HTML Files:{W}")
         for html_file in html_files:
             print(html_file)
 
-        print(f"\n{G}╰➤ {C}PHP Files:{W}")
+        print(f"\n{G}\u2514\u27A4 {C}PHP Files:{W}")
         for php_file in php_files:
             print(php_file)
 
-        print(f"\n{G}╰➤ {C}Image Files:{W}")
+        print(f"\n{G}\u2514\u27A4 {C}Image Files:{W}")
         for image_file in image_files:
             print(image_file)
 
-        print(f"\n{G}╰➤ {C}Internal Links:{W}")
+        print(f"\n{G}\u2514\u27A4 {C}Internal Links:{W}")
         for internal_link in internal_links:
             print(internal_link)
 
-        print(f"\n{G}╰➤ {C}External Links:{W}")
+        print(f"\n{G}\u2514\u27A4 {C}External Links:{W}")
         for external_link in external_links:
             print(external_link)
 
@@ -115,13 +115,13 @@ def perform_web_recon(website_url):
             print("\nFailed to fetch directory. Status code:", directory_response.status_code)
 
         # Print the counts
-        print(f"\n{G}╰➤ {C}Total JS Files:{W}", len(js_files))
-        print(f"{G}╰➤ {C}Total CSS Files:{W}", len(css_files))
-        print(f"{G}╰➤ {C}Total HTML Files:{W}", len(html_files))
-        print(f"{G}╰➤ {C}Total PHP Files:{W}", len(php_files))
-        print(f"{G}╰➤ {C}Total Image Files:{W}", len(image_files))
-        print(f"{G}╰➤ {C}Total Internal Links:{W}", len(internal_links))
-        print(f"{G}╰➤ {C}Total External Links:{W}", len(external_links))
+        print(f"\n{G}\u2514\u27A4 {C}Total JS Files:{W}", len(js_files))
+        print(f"{G}\u2514\u27A4 {C}Total CSS Files:{W}", len(css_files))
+        print(f"{G}\u2514\u27A4 {C}Total HTML Files:{W}", len(html_files))
+        print(f"{G}\u2514\u27A4 {C}Total PHP Files:{W}", len(php_files))
+        print(f"{G}\u2514\u27A4 {C}Total Image Files:{W}", len(image_files))
+        print(f"{G}\u2514\u27A4 {C}Total Internal Links:{W}", len(internal_links))
+        print(f"{G}\u2514\u27A4 {C}Total External Links:{W}", len(external_links))
 
     else:
         print(f"{R}Failed to fetch the website. Status code:", response.status_code)

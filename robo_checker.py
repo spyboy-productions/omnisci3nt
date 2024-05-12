@@ -12,10 +12,10 @@ def check_website(website_url, timeout=10):
     robots_response = requests.get(robots_url, timeout=timeout)
 
     if robots_response.status_code == 200:
-        print(f"{G}╰➤ {C}Robots.txt file exists.")
-        print(f"{G}╰➤ {C}Robots.txt URL:", robots_url)
+        print(f"{G}\u2514\u27A4 {C}Robots.txt file exists.")
+        print(f"{G}\u2514\u27A4 {C}Robots.txt URL:", robots_url)
         robots_content = robots_response.text
-        print(f"{G}╰➤ {C}Robots.txt content:")
+        print(f"{G}\u2514\u27A4 {C}Robots.txt content:")
         print(f"{W}{robots_content}")
 
         sitemap_directive = None

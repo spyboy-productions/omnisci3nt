@@ -45,9 +45,9 @@ def find_subdomains(domain, filename, timeout=20):
 
     end_time = time.time()
     elapsed_time = end_time - start_time
-    print(f"{G}╰➤ {C}Total Subdomains Scanned:{W} 781")
-    print(f"{G}╰➤ {C}Total Subdomains Found:{W} {len(subdomains_found)}")
-    print(f"{G}╰➤ {C}Time taken:{W} {elapsed_time:.2f} seconds")
+    print(f"{G}\u2514\u27A4 {C}Total Subdomains Scanned:{W} 781")
+    print(f"{G}\u2514\u27A4 {C}Total Subdomains Found:{W} {len(subdomains_found)}")
+    print(f"{G}\u2514\u27A4 {C}Time taken:{W} {elapsed_time:.2f} seconds")
     print("\nSubdomains Found Links:\n")
     for link in subdomains_found:
         print(link)

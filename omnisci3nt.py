@@ -57,13 +57,13 @@ def print_banners():
     prints the program banners
     """
     print(f'{R}{banner}{W}\n')
-    print(f'{G}╰➤ {Y}Version      : {W}{VERSION}')
-    print(f'{G}╰➤ {Y}Creator      : {W}Spyboy')
-    print(f'{G}╰➤ {Y}Twitter      : {W}{twitter_url}')
-    print(f'{G}╰➤ {Y}Discord      : {W}{discord}')
-    print(f'{G}╰➤ {Y}Website      : {W}{website}')
-    print(f'{G}╰➤ {Y}Blog         : {W}{blog}')
-    print(f'{G}╰➤ {Y}Github       : {W}{github}\n')
+    print(f'{G}\u2514\u27A4 {Y}Version      : {W}{VERSION}')
+    print(f'{G}\u2514\u27A4 {Y}Creator      : {W}Spyboy')
+    print(f'{G}\u2514\u27A4 {Y}Twitter      : {W}{twitter_url}')
+    print(f'{G}\u2514\u27A4 {Y}Discord      : {W}{discord}')
+    print(f'{G}\u2514\u27A4 {Y}Website      : {W}{website}')
+    print(f'{G}\u2514\u27A4 {Y}Blog         : {W}{blog}')
+    print(f'{G}\u2514\u27A4 {Y}Github       : {W}{github}\n')
 
 ################
 print_banners()
@@ -102,17 +102,12 @@ with open(output_filename, "w") as output_file:
     sys.stdout = tee
 
     banner2 = r'''
-    ￣￣￣￣￣￣￣￣￣￣￣￣
-       Recon Started 
-    ＿＿＿＿＿＿＿＿＿＿＿＿
-          \(•◡•)/ 
-           \   / 
-            ——— 
-           |   |
-           |   |
+ +-+-+-+-+-+ +-+-+-+-+-+-+-+
+ |R|e|c|o|n| |S|t|a|r|t|e|d|
+ +-+-+-+-+-+ +-+-+-+-+-+-+-+
     '''
     #print(f"\n{R}Starting the Recon\n")
-    print(f"{G}{banner2}")
+    print(f"{Y}{banner2}")
     start_time = time.time()
 
     ################
@@ -148,30 +143,30 @@ with open(output_filename, "w") as output_file:
         status = res["status"]
         ass = res["as"]
 
-        ip_info = (f"{G}╰➤ {C}IP: {W}{query}\n"
+        ip_info = (f"{G}\u2514\u27A4 {C}IP: {W}{query}\n"
                    # f"status: {status}\n"
-                   f"{G}╰➤ {C}continent: {W}{continent}\n"
-                   f"{G}╰➤ {C}continent code: {W}{continentcode}\n"
-                   f"{G}╰➤ {C}country: {W}{country}\n"
-                   f"{G}╰➤ {C}country code: {W}{countrycode}\n"
-                   f"{G}╰➤ {C}region name: {W}{regionName}\n"
-                   f"{G}╰➤ {C}region: {W}{region}\n"
-                   f"{G}╰➤ {C}city: {W}{city}\n"
-                   f"{G}╰➤ {C}district: {W}{district}\n"
-                   f"{G}╰➤ {C}zip: {W}{zip}\n"
-                   f"{G}╰➤ {C}timezone: {time_zone}\n"
-                   f"{G}╰➤ {C}name: {W}{name}\n"
-                   f"{G}╰➤ {C}org: {W}{org}\n"
-                   f"{G}╰➤ {C}ase: {W}{ass}\n"
-                   f"{G}╰➤ {C}isp: {W}{isp}\n"
-                   f"{G}╰➤ {C}reverse: {W}{reverse}\n"
-                   f"{G}╰➤ {C}offset: {W}{offset}\n"
-                   f"{G}╰➤ {C}currency: {W}{currency}\n"
-                   f"{G}╰➤ {C}proxy: {W}{proxy}\n"
-                   f"{G}╰➤ {C}hosting: {W}{hosting}\n"
-                   f"{G}╰➤ {C}mobile: {W}{mobile}\n"
-                   f"{G}╰➤ {C}latitude: {W}{lat}\n"
-                   f"{G}╰➤ {C}longitude: {W}{lon}")
+                   f"{G}\u2514\u27A4 {C}continent: {W}{continent}\n"
+                   f"{G}\u2514\u27A4 {C}continent code: {W}{continentcode}\n"
+                   f"{G}\u2514\u27A4 {C}country: {W}{country}\n"
+                   f"{G}\u2514\u27A4 {C}country code: {W}{countrycode}\n"
+                   f"{G}\u2514\u27A4 {C}region name: {W}{regionName}\n"
+                   f"{G}\u2514\u27A4 {C}region: {W}{region}\n"
+                   f"{G}\u2514\u27A4 {C}city: {W}{city}\n"
+                   f"{G}\u2514\u27A4 {C}district: {W}{district}\n"
+                   f"{G}\u2514\u27A4 {C}zip: {W}{zip}\n"
+                   f"{G}\u2514\u27A4 {C}timezone: {time_zone}\n"
+                   f"{G}\u2514\u27A4 {C}name: {W}{name}\n"
+                   f"{G}\u2514\u27A4 {C}org: {W}{org}\n"
+                   f"{G}\u2514\u27A4 {C}ase: {W}{ass}\n"
+                   f"{G}\u2514\u27A4 {C}isp: {W}{isp}\n"
+                   f"{G}\u2514\u27A4 {C}reverse: {W}{reverse}\n"
+                   f"{G}\u2514\u27A4 {C}offset: {W}{offset}\n"
+                   f"{G}\u2514\u27A4 {C}currency: {W}{currency}\n"
+                   f"{G}\u2514\u27A4 {C}proxy: {W}{proxy}\n"
+                   f"{G}\u2514\u27A4 {C}hosting: {W}{hosting}\n"
+                   f"{G}\u2514\u27A4 {C}mobile: {W}{mobile}\n"
+                   f"{G}\u2514\u27A4 {C}latitude: {W}{lat}\n"
+                   f"{G}\u2514\u27A4 {C}longitude: {W}{lon}")
 
         print(ip_info)
 
@@ -189,22 +184,22 @@ with open(output_filename, "w") as output_file:
 
             domain = whois.whois(f"{link}")
 
-            '''domain_info = (f"{G}╰➤ {C}name: {W}{domain.name}\n"
-                           f"{G}╰➤ {C}tld: {W}{domain.tld}\n"
-                           f"{G}╰➤ {C}registrar: {W}{domain.registrar}\n"
-                           f"{G}╰➤ {C}registrant_country: {W}{domain.registrant_country}\n"
-                           f"{G}╰➤ {C}creation_date: {W}{domain.creation_date}\n"
-                           f"{G}╰➤ {C}expiration_date: {domain.expiration_date}\n"
-                           f"{G}╰➤ {C}last_updated: {W}{domain.last_updated}\n"
-                           f"{G}╰➤ {C}status: {W}{domain.status}\n"
-                           f"{G}╰➤ {C}statuses: {W}{domain.statuses}\n"
-                           f"{G}╰➤ {C}dnssec: {W}{domain.dnssec}\n"
-                           f"{G}╰➤ {C}registrant: {W}{domain.registrant}\n"
-                           f"{G}╰➤ {C}admin: {W}{domain.admin}\n"
-                           f"{G}╰➤ {C}owner: {W}{domain.owner}\n"
-                           f"{G}╰➤ {C}reseller: {W}{domain.reseller}\n"
-                           f"{G}╰➤ {C}emails: {W}{domain.emails}\n"
-                           f"{G}╰➤ {C}abuse_contact: {W}{domain.abuse_contact})")'''
+            '''domain_info = (f"{G}\u2514\u27A4 {C}name: {W}{domain.name}\n"
+                           f"{G}\u2514\u27A4 {C}tld: {W}{domain.tld}\n"
+                           f"{G}\u2514\u27A4 {C}registrar: {W}{domain.registrar}\n"
+                           f"{G}\u2514\u27A4 {C}registrant_country: {W}{domain.registrant_country}\n"
+                           f"{G}\u2514\u27A4 {C}creation_date: {W}{domain.creation_date}\n"
+                           f"{G}\u2514\u27A4 {C}expiration_date: {domain.expiration_date}\n"
+                           f"{G}\u2514\u27A4 {C}last_updated: {W}{domain.last_updated}\n"
+                           f"{G}\u2514\u27A4 {C}status: {W}{domain.status}\n"
+                           f"{G}\u2514\u27A4 {C}statuses: {W}{domain.statuses}\n"
+                           f"{G}\u2514\u27A4 {C}dnssec: {W}{domain.dnssec}\n"
+                           f"{G}\u2514\u27A4 {C}registrant: {W}{domain.registrant}\n"
+                           f"{G}\u2514\u27A4 {C}admin: {W}{domain.admin}\n"
+                           f"{G}\u2514\u27A4 {C}owner: {W}{domain.owner}\n"
+                           f"{G}\u2514\u27A4 {C}reseller: {W}{domain.reseller}\n"
+                           f"{G}\u2514\u27A4 {C}emails: {W}{domain.emails}\n"
+                           f"{G}\u2514\u27A4 {C}abuse_contact: {W}{domain.abuse_contact})")'''
 
             print(f"{G}{domain}")
 
@@ -299,25 +294,25 @@ with open(output_filename, "w") as output_file:
             programming_languages, technologies, javascript_libraries, web_server = analyze_website(website_url)
 
             if programming_languages:
-                print(f"{G}╰➤ {C}Detected programming languages:{W}", f", ".join(programming_languages))
+                print(f"{G}\u2514\u27A4 {C}Detected programming languages:{W}", f", ".join(programming_languages))
             else:
                 print(f"{R}No programming language detected or an error occurred.")
 
             if technologies:
-                print(f"\n{G}╰➤ {C}Website technologies:")
+                print(f"\n{G}\u2514\u27A4 {C}Website technologies:")
                 for tech, details in technologies.items():
                     print(f"{W}{tech}: {details}")
             else:
                 print(f"{R}An error occurred while fetching technologies.")
 
             if javascript_libraries:
-                print(f"\n{G}╰➤ {C}JavaScript libraries:")
+                print(f"\n{G}\u2514\u27A4 {C}JavaScript libraries:")
                 for library in javascript_libraries:
                     print(f"{W}- " + library)
             else:
                 print(f"{R}No JavaScript libraries detected.")
 
-            print(f"\n{G}╰➤ {C}Web server:", f"{W}{web_server}")
+            print(f"\n{G}\u2514\u27A4 {C}Web server:", f"{W}{web_server}")
 
         except Exception as e:
             print(e)
@@ -418,18 +413,14 @@ with open(output_filename, "w") as output_file:
     elapsed_time = end_time - start_time
 
     banner3 = r'''
-    ￣￣￣￣￣￣￣￣￣￣￣￣￣￣
-       Recon completed                        
-    ＿＿＿＿＿＿＿＿＿＿＿＿＿＿ 
-    (\__/) || 
-    (•ㅅ•) || 
-    / 　 づ
-
+ +-+-+-+-+-+ +-+-+-+-+-+-+-+-+-+
+ |R|e|c|o|n| |c|o|m|p|l|e|t|e|d|
+ +-+-+-+-+-+ +-+-+-+-+-+-+-+-+-+
     '''
-    print(f"{R}{banner3}")
+    print(f"{G}{banner3}")
     #print(f"\n{R}Recon completed\n")
-    print(f"{G}╰➤ {C}Date: {W}{formatted_date}")
-    print(f"{G}╰➤ {C}Time taken: {W}{elapsed_time:.2f} seconds")
+    print(f"{G}\u2514\u27A4 {C}Date: {W}{formatted_date}")
+    print(f"{G}\u2514\u27A4 {C}Time taken: {W}{elapsed_time:.2f} seconds")
     sys.stdout = sys.__stdout__  # Restore standard output
 
-print(f"{G}╰➤ {C}Output saved to '{output_filename}'")
+print(f"{G}\u2514\u27A4 {C}Output saved to '{output_filename}'")
