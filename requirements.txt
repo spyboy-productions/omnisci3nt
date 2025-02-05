@@ -6,3 +6,4 @@ builtwith
 colorama
 aiohttp
 aiodns
+tqdm

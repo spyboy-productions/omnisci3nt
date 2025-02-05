@@ -2,6 +2,7 @@ import socket
 import aiohttp
 import asyncio
 from datetime import date
+import sys
 
 RED = '\033[31m'  # red
 GREEN = '\033[32m'  # green
@@ -15,6 +16,9 @@ found = []
 responses = []
 current_year = date.today().year
 
+# Fix for Windows aiodns issue
+if sys.platform == "win32":
+    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
 async def fetch_url(session, url, allow_redirects):
     try:

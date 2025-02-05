@@ -10,16 +10,29 @@ from datetime import datetime
 from pprint import pprint
 import socket
 
+import signal
+import threading
+
 from sl import get_certificate_info, print_certificate_info
 from header import fetch_headers
 from dns_enumeration import dnsrec
-from dmarc_record import fetch_dmarc_links
+
+#from dmarc_record import fetch_dmarc_links
+from dmarc_record import check_dmarc,Colors
+
 from web_carwl import perform_web_recon
 from robo_checker import check_website
 from buildwith import analyze_website
 from wayback import fetch_wayback_links
 from social_media import extract_links_and_emails
-from sdomain import find_subdomains
+
+#from sdomain import find_subdomains
+from better_subdomain import (
+    setup_config,
+    get_api_keys,
+    enumerate_subdomains,
+    COLORS
+)
 import dirtest
 from portscan import ps
 from admin_finder import find_admin_panels
@@ -33,7 +46,7 @@ website = 'https://spyboy.in/'
 blog = 'https://spyboy.blog/'
 github = 'https://github.com/spyboy-productions/omnisci3nt'
 
-VERSION = '1.0.2'
+VERSION = '1.0.3'
 
 R = '\033[31m'  # red
 G = '\033[32m'  # green
@@ -51,6 +64,18 @@ banner = r'''
     Unveiling the Hidden Layers of the Web.     
 
 '''
+
+# Global flag to handle graceful shutdown
+shutdown_flag = threading.Event()
+
+def signal_handler(sig, frame):
+    """Handles termination signals like CTRL+C."""
+    print(f"{R}Exiting...{W}")
+    shutdown_flag.set()  # Set the shutdown flag to terminate threads
+    sys.exit(0)
+
+# Attach signal handler for CTRL+C
+signal.signal(signal.SIGINT, signal_handler)
 
 def print_banners():
     """
@@ -110,6 +135,7 @@ with open(output_filename, "w") as output_file:
     print(f"{Y}{banner2}")
     start_time = time.time()
 
+    
     ################
     ### IP Lookup
     try:
@@ -172,40 +198,42 @@ with open(output_filename, "w") as output_file:
 
     except Exception as e:
         print(e)
-
+    
     ### Header
     if __name__ == "__main__":
         target_host = f"https://{link}"
         fetch_headers(url=target_host)
 
+    
+
     ### whois lookup
-        try:
-            print(f'\n{Y}[~] Whois :{W}\n')
+    try:
+        print(f'\n{Y}[~] Whois :{W}\n')
 
-            domain = whois.whois(f"{link}")
+        domain = whois.whois(f"{link}")
 
-            '''domain_info = (f"{G}\u2514\u27A4 {C}name: {W}{domain.name}\n"
-                           f"{G}\u2514\u27A4 {C}tld: {W}{domain.tld}\n"
-                           f"{G}\u2514\u27A4 {C}registrar: {W}{domain.registrar}\n"
-                           f"{G}\u2514\u27A4 {C}registrant_country: {W}{domain.registrant_country}\n"
-                           f"{G}\u2514\u27A4 {C}creation_date: {W}{domain.creation_date}\n"
-                           f"{G}\u2514\u27A4 {C}expiration_date: {domain.expiration_date}\n"
-                           f"{G}\u2514\u27A4 {C}last_updated: {W}{domain.last_updated}\n"
-                           f"{G}\u2514\u27A4 {C}status: {W}{domain.status}\n"
-                           f"{G}\u2514\u27A4 {C}statuses: {W}{domain.statuses}\n"
-                           f"{G}\u2514\u27A4 {C}dnssec: {W}{domain.dnssec}\n"
-                           f"{G}\u2514\u27A4 {C}registrant: {W}{domain.registrant}\n"
-                           f"{G}\u2514\u27A4 {C}admin: {W}{domain.admin}\n"
-                           f"{G}\u2514\u27A4 {C}owner: {W}{domain.owner}\n"
-                           f"{G}\u2514\u27A4 {C}reseller: {W}{domain.reseller}\n"
-                           f"{G}\u2514\u27A4 {C}emails: {W}{domain.emails}\n"
-                           f"{G}\u2514\u27A4 {C}abuse_contact: {W}{domain.abuse_contact})")'''
+        '''domain_info = (f"{G}\u2514\u27A4 {C}name: {W}{domain.name}\n"
+                       f"{G}\u2514\u27A4 {C}tld: {W}{domain.tld}\n"
+                       f"{G}\u2514\u27A4 {C}registrar: {W}{domain.registrar}\n"
+                       f"{G}\u2514\u27A4 {C}registrant_country: {W}{domain.registrant_country}\n"
+                       f"{G}\u2514\u27A4 {C}creation_date: {W}{domain.creation_date}\n"
+                       f"{G}\u2514\u27A4 {C}expiration_date: {domain.expiration_date}\n"
+                       f"{G}\u2514\u27A4 {C}last_updated: {W}{domain.last_updated}\n"
+                       f"{G}\u2514\u27A4 {C}status: {W}{domain.status}\n"
+                       f"{G}\u2514\u27A4 {C}statuses: {W}{domain.statuses}\n"
+                       f"{G}\u2514\u27A4 {C}dnssec: {W}{domain.dnssec}\n"
+                       f"{G}\u2514\u27A4 {C}registrant: {W}{domain.registrant}\n"
+                       f"{G}\u2514\u27A4 {C}admin: {W}{domain.admin}\n"
+                       f"{G}\u2514\u27A4 {C}owner: {W}{domain.owner}\n"
+                       f"{G}\u2514\u27A4 {C}reseller: {W}{domain.reseller}\n"
+                       f"{G}\u2514\u27A4 {C}emails: {W}{domain.emails}\n"
+                       f"{G}\u2514\u27A4 {C}abuse_contact: {W}{domain.abuse_contact})")'''
 
-            print(f"{G}{domain}")
+        print(f"{G}{domain}")
 
-        except Exception as e:
-            print(e)
-
+    except Exception as e:
+        print(e)
+    
     ### SSL certificate checker
     if __name__ == "__main__":
         try:
@@ -215,7 +243,7 @@ with open(output_filename, "w") as output_file:
         except Exception as e:
             print(e)
           
-
+    
     ### DNS enumeration
     if __name__ == "__main__":
         try:
@@ -224,7 +252,8 @@ with open(output_filename, "w") as output_file:
             dnsrec(domain=target_host)
         except Exception as e:
             print(e)
-
+    
+    
     ### Shared DNS
         try:
             print(f'\n{Y}[~] Shared DNS :{W}\n')
@@ -242,7 +271,27 @@ with open(output_filename, "w") as output_file:
 
         except Exception as e:
             print(e)
+    
+    
+    ### Better Subdomain Enumeration
+    if __name__ == "__main__":
+        setup_config()
+        api_keys = get_api_keys()
+        
+        domain = f"{link}"
+        
+        start_time = time.time()
+        print(f"{COLORS['BLUE']}\n[*] Starting subdomain enumeration...")
+        
+        count = enumerate_subdomains(domain, api_keys)
+        
+        elapsed = time.time() - start_time
+        print(f"{COLORS['WHITE']}\n[*] Total unique subdomains found: {count}")
+        print(f"{COLORS['BLUE']}[!] Results saved to {domain}-subdomains.txt")
+        print(f"{COLORS['YELLOW']}[*] Completed in {elapsed:.2f} seconds\n")
+    
 
+    '''
     ### Subdomain Enumeration
     if __name__ == "__main__":
         try:
@@ -251,7 +300,8 @@ with open(output_filename, "w") as output_file:
             find_subdomains(domain=target_host, filename='wordlist2.txt')
         except Exception as e:
             print(e)
-
+    '''
+    
     ### Port scan
     if __name__ == "__main__":
         try:
@@ -260,7 +310,8 @@ with open(output_filename, "w") as output_file:
 
         except Exception as e:
             print(e)
-
+    
+    
     ### Web Crawler
     if __name__ == "__main__":
         try:
@@ -316,7 +367,7 @@ with open(output_filename, "w") as output_file:
 
         except Exception as e:
             print(e)
-
+    
 
     ### Wayback
     if __name__ == "__main__":
@@ -328,7 +379,7 @@ with open(output_filename, "w") as output_file:
 
         except Exception as e:
             print(e)
-
+    '''
     ### DMARC Record
     if __name__ == "__main__":
         try:
@@ -338,6 +389,48 @@ with open(output_filename, "w") as output_file:
 
         except Exception as e:
             print(e)
+    '''
+
+    ### better DMARC Record
+    def display_dmarc_results(target_host: str):
+        try:
+            dmarc_results = check_dmarc(target_host)
+            
+            print(f"\n{Colors.YELLOW}[+] DMARC Check for {Colors.CYAN}{target_host}{Colors.RESET}")
+            
+            if dmarc_results['error']:
+                print(f"{Colors.RED}[!] {dmarc_results['error']}{Colors.RESET}")
+            elif not dmarc_results['exists']:
+                print(f"{Colors.YELLOW}[~] No DMARC record found{Colors.RESET}")
+            else:
+                print(f"{Colors.GREEN}[ok] DMARC Record Found:{Colors.RESET}")
+                print(f"{Colors.BLUE}Raw Record: {dmarc_results['record']}{Colors.RESET}")
+                
+                if dmarc_results['policy']:
+                    print(f"\n{Colors.YELLOW}Policy Settings:{Colors.RESET}")
+                    for policy in dmarc_results['policy']:
+                        print(f"  {Colors.GREEN}-> {policy}{Colors.RESET}")
+                
+                if dmarc_results['links']:
+                    print(f"\n{Colors.YELLOW}External Links:{Colors.RESET}")
+                    for link in dmarc_results['links']:
+                        print(f"  {Colors.CYAN}->  {link}{Colors.RESET}")
+                
+                if dmarc_results['emails']:
+                    print(f"\n{Colors.YELLOW}Reporting Emails:{Colors.RESET}")
+                    for email in dmarc_results['emails']:
+                        print(f"  {Colors.CYAN}->  {email}{Colors.RESET}")
+
+        except Exception as e:
+            print(f"{Colors.RED}[!] Critical Error: {e}{Colors.RESET}")
+
+    if __name__ == "__main__":
+        test_domains = [f"{link}"]
+        
+        for domain in test_domains:
+            display_dmarc_results(domain)
+            print("\n" + "="*50 + "\n")
+
 
     ### Directory scan
     if __name__ == "__main__":
@@ -359,27 +452,32 @@ with open(output_filename, "w") as output_file:
 
         except Exception as e:
             print(e)
-
+    
+    
     ### Amin_panel_finder
+    import sys  # Import sys module
+
     if __name__ == "__main__":
         try:
-            print(f'\n{Y}[~] Admin LogIn Panel:{W}\n')
-            print(f"\n{C}Scanning for Login Page. Please wait...")
+            sys.__stdout__.write(f'\n{Y}[~] Admin LogIn Panel:{W}\n\n')
+            sys.__stdout__.write(f"\n{C}Scanning for Login Page. Please wait...\n")
 
             target_url = f"https://{link}"
             paths_file = 'paths.txt'
-            num_threads = int('30')
+            num_threads = 30  # Use integer directly
 
             with open(paths_file, 'r') as file:
                 paths = file.read()
 
             result = find_admin_panels(target_url, paths, num_threads)
 
+            # Print results after scanning completes
+            sys.__stdout__.write("\nScan Completed!\n")
             for line in result:
-                print(line)
+                sys.__stdout__.write(line + "\n")
 
         except Exception as e:
-            print(e)
+            sys.__stdout__.write(f"{R}[!] Error: {e}{W}\n")
 
 
     ### Social media links
@@ -407,6 +505,7 @@ with open(output_filename, "w") as output_file:
         except Exception as e:
             print(e)
 
+    
     ### Completed!!
 
     end_time = time.time()

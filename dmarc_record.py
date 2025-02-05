@@ -1,43 +1,87 @@
+# dmarc_checker.py
 import dns.resolver
 import re
+from typing import Optional, Dict
 
-R = '\033[31m'  # red
-G = '\033[32m'  # green
-C = '\033[36m'  # cyan
-W = '\033[0m'   # white
-Y = '\033[33m'  # yellow
+class Colors:
+    RED = '\033[31m'
+    GREEN = '\033[32m'
+    CYAN = '\033[36m'
+    YELLOW = '\033[33m'
+    BLUE = '\033[34m'
+    RESET = '\033[0m'
 
-def fetch_dmarc_links(domain):
+def get_dmarc_record(domain: str, timeout: int = 10) -> Optional[str]:
+    """Query and return DMARC record for a domain."""
     try:
-        print(f'\n{Y}[!] DMARC record :{W}\n')
-        # Set a timeout value in seconds
-        timeout = 10
-
-        # Query DMARC record for the domain
-        query_result = dns.resolver.resolve('_dmarc.' + domain, 'TXT', lifetime=timeout)
-
-        # Extract DMARC policy from the TXT record
-        dmarc_record = query_result.rrset[0].to_text()
-
-        # Extract links using regular expressions
-        link_pattern = r'https?://[^\s/$.?#].[^\s]*'
-        links = re.findall(link_pattern, dmarc_record)
-
-        return links
+        answers = dns.resolver.resolve(f'_dmarc.{domain}', 'TXT', lifetime=timeout)
+        for record in answers:
+            record_str = ' '.join([s.decode() for s in record.strings])
+            if 'v=DMARC1' in record_str:
+                return record_str
+        return None
     except (dns.resolver.NXDOMAIN, dns.resolver.NoAnswer):
-        print(f"{G}[+] {R}No DMARC record found for {domain}")
-        return []
+        return None
     except dns.exception.DNSException as e:
-        print(f"{G}[+] {R}An error occurred: {e}")
-        return []
+        raise RuntimeError(f"{Colors.RED}DNS Error: {e}{Colors.RESET}") from e
 
-if __name__ == "__main__":
-    domain_to_check = input("Enter the domain to check DMARC record and fetch links: ")
-    links = fetch_dmarc_links(domain_to_check)
+def parse_dmarc(record: str) -> Dict[str, list]:
+    """Parse DMARC record into structured data."""
+    dmarc_data = {
+        'policy': [],
+        'links': [],
+        'emails': [],
+        'raw': record
+    }
+    
+    # Policy tags to extract
+    policy_tags = ['v', 'p', 'sp', 'pct', 'fo', 'rf', 'ri']
+    for tag in policy_tags:
+        match = re.search(rf'{tag}=([^;]+)', record, re.IGNORECASE)
+        if match:
+            dmarc_data['policy'].append(f"{tag.upper()}: {match.group(1)}")
 
-    if links:
-        print("Links found in DMARC record:")
-        for link in links:
-            print(link)
-    else:
-        print("No links found in DMARC record.")
+    # URI extraction with improved pattern
+    uri_pattern = r'(?:rua|ruf)=([^,]+)'
+    uris = re.findall(uri_pattern, record, re.IGNORECASE)
+    
+    for uri in uris:
+        uri = uri.strip()
+        if uri.startswith('mailto:'):
+            dmarc_data['emails'].append(uri[7:].split('!')[0])  # Handle email formatting
+        else:
+            dmarc_data['links'].append(uri)
+
+    return dmarc_data
+
+def check_dmarc(domain: str) -> Dict:
+    """Main function to check DMARC and return structured results."""
+    result = {
+        'domain': domain,
+        'exists': False,
+        'record': None,
+        'policy': [],
+        'links': [],
+        'emails': [],
+        'error': None
+    }
+    
+    try:
+        record = get_dmarc_record(domain)
+        if not record:
+            result['error'] = "No DMARC record found"
+            return result
+            
+        parsed = parse_dmarc(record)
+        result.update({
+            'exists': True,
+            'record': parsed['raw'],
+            'policy': parsed['policy'],
+            'links': parsed['links'],
+            'emails': parsed['emails']
+        })
+        
+    except Exception as e:
+        result['error'] = str(e)
+        
+    return result
