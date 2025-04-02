@@ -40,17 +40,22 @@ Whether you're a cybersecurity professional, researcher, or individual seeking t
 |---------|-------------|
 | IP Lookup | Retrieve IP-based information |
 | WHOIS Lookup | Extract domain registration details |
+| HTTP Header Analysis | Fetch and analyze HTTP headers |
 | SSL Inspection | Analyze SSL certificates |
-| DNS Enumeration | Retrieve DNS records |
+| DNS Enumeration | Retrieve DNS records and check Reverse & Shared DNS |
 | Subdomain Enumeration | Discover subdomains |
 | Port Scanning | Identify open ports |
 | Directory Enumeration | List files and directories |
-| Web Crawling | Analyze website structure |
-| Technology Detection | Identify tech stacks |
-| Wayback Machine | View archived pages |
+| Web Crawling | Analyze website structure and fetch robots.txt & sitemap |
+| Technology Detection | Identify tech stacks used by the website |
+| Wayback Machine | View archived pages from the past |
 | DMARC Analysis | Examine email security measures |
 | Social Media Discovery | Extract social media links and emails |
 | Admin Panel Detection | Locate admin login pages |
+| Reverse DNS Lookup | Identify hostnames associated with an IP |
+| Shared DNS Lookup | Find domains sharing the same DNS server |
+| Website Crawling | Extract internal links and file structure |
+| Full Recon | Run all modules for a complete analysis |
 
 ---
 
