@@ -24,10 +24,10 @@ def dnsrec(domain):
         types = ['A', 'AAAA', 'CAA', 'CNAME', 'MX', 'NS', 'TXT']
 
         # Set a timeout value in seconds
-        timeout = 10
+        timeout = 3
 
         resolver = dns.resolver.Resolver()
-        resolver.nameservers = ['8.8.8.8']
+        resolver.nameservers = ['8.8.8.8', '1.1.1.1', '9.9.9.9', '208.67.222.222']
         resolver.timeout = timeout
         resolver.lifetime = timeout
 

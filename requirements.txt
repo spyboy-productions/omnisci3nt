@@ -7,3 +7,4 @@ colorama
 aiohttp
 aiodns
 tqdm
+aiofiles
