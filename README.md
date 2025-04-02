@@ -33,21 +33,23 @@ Whether you're a cybersecurity professional, researcher, or individual seeking t
 
 `For the best experience and to utilize the tool's full potential, install it.`
 
-### ⭔ Key Features:
+### 🛠 Key Features:
 
-- **IP Lookup**: Retrieve geographic and network-related information.
-- **WHOIS Lookup**: Disclose domain registration details.
-- **SSL Certificate Inspection**: Gain insights into encryption protocols.
-- **DNS Enumeration**: Explore domain-related DNS records.
-- **Subdomain Enumeration**: Uncover subdomains associated with the target.
-- **Port Scanning**: Scan the top 1000 ports for potential vulnerabilities.
-- **Directory Enumeration**: Find and list the files and directories.
-- **Web Crawling**: Analyze the target website's structure and content.
-- **Technology Analysis**: Identify programming languages, technologies, and libraries.
-- W**ayback Machine Access**: Explore archived versions of the website.
-- **DMARC Record Examination**: Understand email security measures.
-- S**ocial Media and Email Discovery**: Uncover associated links and addresses.
-- **Admin panel**: Find the admin panel of the website / Admin Login Page
+| Feature | Description |
+|---------|-------------|
+| IP Lookup | Retrieve IP-based information |
+| WHOIS Lookup | Extract domain registration details |
+| SSL Inspection | Analyze SSL certificates |
+| DNS Enumeration | Retrieve DNS records |
+| Subdomain Enumeration | Discover subdomains |
+| Port Scanning | Identify open ports |
+| Directory Enumeration | List files and directories |
+| Web Crawling | Analyze website structure |
+| Technology Detection | Identify tech stacks |
+| Wayback Machine | View archived pages |
+| DMARC Analysis | Examine email security measures |
+| Social Media Discovery | Extract social media links and emails |
+| Admin Panel Detection | Locate admin login pages |
 
 ---
 
@@ -79,9 +81,28 @@ cd omnisci3nt
 ```
 pip3 install -r requirements.txt
 ```
-```
-python3 omnisci3nt.py
-```
+
+### **Usage Commands**
+| Command | Description |
+|---------|-------------|
+| `python3 omnisci3nt.py -ip <domain>` | Perform an IP lookup |
+| `python3 omnisci3nt.py -headers <domain>` | Fetch HTTP headers |
+| `python3 omnisci3nt.py -whois <domain>` | Retrieve WHOIS information |
+| `python3 omnisci3nt.py -ssl <domain>` | Retrieve SSL certificate information |
+| `python3 omnisci3nt.py -dns <domain>` | Perform DNS enumeration |
+| `python3 omnisci3nt.py -reversedns <domain>` | Show Reverse DNS |
+| `python3 omnisci3nt.py -shareddns <domain>` | Show Shared DNS |
+| `python3 omnisci3nt.py -subdomains <domain>` | Find subdomains |
+| `python3 omnisci3nt.py -dmarc <domain>` | Check DMARC record |
+| `python3 omnisci3nt.py -crawl <domain>` | Crawl the target website files
+| `python3 omnisci3nt.py -robots <domain>` | fetch robots.txt and sitemap |
+| `python3 omnisci3nt.py -tech <domain>` | Analyze web technologies |
+| `python3 omnisci3nt.py -wayback <domain>` | Fetch Wayback Machine data |
+| `python3 omnisci3nt.py -social <domain>` | Find social media links |
+| `python3 omnisci3nt.py -dirscan <domain>` | Perform directory scanning |
+| `python3 omnisci3nt.py -portscan <domain>` | Perform a port scan |
+| `python3 omnisci3nt.py -admin <domain>` | Find admin login pages |
+| `python3 omnisci3nt.py -all <domain>` | Run every module |
 
 ---
 
