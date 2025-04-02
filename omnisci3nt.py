@@ -83,7 +83,7 @@ def signal_handler(sig, frame):
 signal.signal(signal.SIGINT, signal_handler)
 
 def main():
-    parser = argparse.ArgumentParser(description=f"{Y}Ex: python omnisci3nt.py example.com -whois")
+    parser = argparse.ArgumentParser(description=f"{R}Example:{G} python omnisci3nt.py example.com -whois{Y}")
     parser.add_argument("target", help="Target domain or IP")
     parser.add_argument("-ip", action="store_true", help="Perform IP lookup")
     parser.add_argument("-headers", action="store_true", help="Fetch HTTP headers")
