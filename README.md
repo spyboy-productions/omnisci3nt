@@ -84,6 +84,11 @@ cd omnisci3nt
 pip3 install -r requirements.txt
 ```
 
+### ⭔ Example Usage:
+```
+python omnisci3nt.py -whois example.com
+```
+
 ### **Usage Commands**
 | Command | Description |
 |---------|-------------|
