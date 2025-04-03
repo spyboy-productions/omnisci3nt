@@ -1,3 +1,4 @@
+<h4 align="center"> If you find this GitHub repo useful, please consider giving it a star! ⭐️ </h4> 
 <p align="center">
     <a href="https://spyboy.in/twitter">
       <img src="https://img.shields.io/badge/-TWITTER-black?logo=twitter&style=for-the-badge">
@@ -19,10 +20,6 @@
 
 <img width="100%" align="centre" src="https://github.com/spyboy-productions/omnisci3nt/blob/main/image/omnisci3nt1.png" />
 
-Omnisci3nt equips users with a comprehensive toolkit for conducting web reconnaissance with precision and efficiency.
-
----
-
 Omnisci3nt is a powerful web reconnaissance tool designed to unravel the concealed intricacies of the online realm. With a comprehensive array of capabilities, Omnisci3nt offers users the means to delve into various aspects of a target domain, including IP lookup, domain information, SSL certificate details, DNS enumeration, subdomain enumeration, port scanning, web crawling, analysis of technologies utilized, Wayback Machine exploration, DMARC record examination, social media link discovery, and more.
 
 Whether you're a cybersecurity professional, researcher, or individual seeking to gain insights into a particular domain, Omnisci3nt's versatile toolkit offers a comprehensive solution for navigating the intricate landscape of the web.
@@ -39,17 +36,22 @@ Whether you're a cybersecurity professional, researcher, or individual seeking t
 |---------|-------------|
 | IP Lookup | Retrieve IP-based information |
 | WHOIS Lookup | Extract domain registration details |
+| HTTP Header Analysis | Fetch and analyze HTTP headers |
 | SSL Inspection | Analyze SSL certificates |
-| DNS Enumeration | Retrieve DNS records |
+| DNS Enumeration | Retrieve DNS records and check Reverse & Shared DNS |
 | Subdomain Enumeration | Discover subdomains |
 | Port Scanning | Identify open ports |
 | Directory Enumeration | List files and directories |
-| Web Crawling | Analyze website structure |
-| Technology Detection | Identify tech stacks |
-| Wayback Machine | View archived pages |
+| Web Crawling | Analyze website structure and fetch robots.txt & sitemap |
+| Technology Detection | Identify tech stacks used by the website |
+| Wayback Machine | View archived pages from the past |
 | DMARC Analysis | Examine email security measures |
 | Social Media Discovery | Extract social media links and emails |
 | Admin Panel Detection | Locate admin login pages |
+| Reverse DNS Lookup | Identify hostnames associated with an IP |
+| Shared DNS Lookup | Find domains sharing the same DNS server |
+| Website Crawling | Extract internal links and file structure |
+| Full Recon | Run all modules for a complete analysis |
 
 ---
 
@@ -82,6 +84,11 @@ cd omnisci3nt
 pip3 install -r requirements.txt
 ```
 
+### ⭔ Example Usage:
+```
+python omnisci3nt.py -whois example.com
+```
+
 ### **Usage Commands**
 | Command | Description |
 |---------|-------------|
@@ -112,7 +119,6 @@ Contributions and feature requests are welcome! If you encounter any issues or h
 
 #### 😴🥱😪💤 ToDo:
 
-- make seprate cmd for all module
 - add urlscan.io
 - spoof check (mx record checkup) if domain email is spoofable
 - reverse IP lookup
