@@ -4,6 +4,7 @@ import socket
 import whois
 from urllib.parse import urljoin
 from tqdm import tqdm
+from requests.exceptions import Timeout
 
 R = '\033[31m'  # red
 G = '\033[32m'  # green
@@ -23,13 +24,17 @@ def find_admin_panels(target_url, paths, num_threads):
         for path in paths:
             try:
                 full_url = urljoin(target_url, path)
-                r = requests.get(full_url)
+                r = requests.get(full_url, timeout=3)
                 http = r.status_code
                 if http == 200:
                     print(f'\n  \033[1;32m[+]\033[0m Potential Admin panel found: {full_url}')
                     found_admin_panels.append(full_url)
                 elif http == 302:
                     print(f'  \033[1;32m[+]\033[0m Potential EAR vulnerability found: {full_url}')
+
+            #except Timeout:
+                #print(f"{Y}[!] Timeout on: {full_url}{W}")
+    
             except Exception:
                 pass  # Ignore errors
             progress_bar.update(1)

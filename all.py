@@ -136,7 +136,7 @@ with open(output_filename, "w") as output_file:
                    f"{G}[+] {C}city: {W}{city}\n"
                    f"{G}[+] {C}district: {W}{district}\n"
                    f"{G}[+] {C}zip: {W}{zip}\n"
-                   f"{G}[+] {C}timezone: {time_zone}\n"
+                   f"{G}[+] {C}timezone: {W}{time_zone}\n"
                    f"{G}[+] {C}name: {W}{name}\n"
                    f"{G}[+] {C}org: {W}{org}\n"
                    f"{G}[+] {C}ase: {W}{ass}\n"

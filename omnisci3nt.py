@@ -14,6 +14,9 @@ import threading
 import aiofiles
 import subprocess
 
+from urllib.parse import urlparse, urlunparse
+import ipaddress
+
 from sl import get_certificate_info, print_certificate_info
 from header import fetch_headers
 from dns_enumeration import dnsrec
@@ -40,7 +43,7 @@ twitter_url = 'https://spyboy.in/twitter'
 discord = 'https://spyboy.in/Discord'
 github = 'https://github.com/spyboy-productions/omnisci3nt'
 
-VERSION = '1.0.4'
+VERSION = '1.0.5'
 
 R = '\033[31m'  # red
 G = '\033[32m'  # green
@@ -69,15 +72,16 @@ def print_banner():
     print(f'{G}\u2514\u27A4 {Y}Twitter      : {W}{twitter_url}')
     print(f'{G}\u2514\u27A4 {Y}Discord      : {W}{discord}')
     print(f'{G}\u2514\u27A4 {Y}Github       : {W}{github}\n')
+    print(f'____________________________________________________________________________\n')
 
 # Global flag to handle graceful shutdown
 shutdown_flag = threading.Event()
 
 def signal_handler(sig, frame):
     """Handles termination signals like CTRL+C."""
-    print(f"{R}Exiting...{W}")
+    print(f"\n{R}[!] Caught interrupt signal. Shutting down gracefully...{W}")
     shutdown_flag.set()  # Set the shutdown flag to terminate threads
-    sys.exit(0)
+    #sys.exit(0)
 
 # Attach signal handler for CTRL+C
 signal.signal(signal.SIGINT, signal_handler)
@@ -105,14 +109,103 @@ def main():
     parser.add_argument("-all", action="store_true", help="Run all modules")
     args = parser.parse_args()
     
-    # Check if the user has provided a URL 
+    '''# Check if the user has provided a URL 
     domain = args.target.strip()
     match = re.search(r'(https?://)?([A-Za-z_0-9.-]+).*', domain)
     if match:
         domain = match.group(2)
     else:
         print("Invalid URL format.")
-        sys.exit(1)
+        sys.exit(1)'''
+
+    # === Function to check if a string is an IP ===
+    def is_ip(address):
+        try:
+            ipaddress.ip_address(address)
+            return True
+        except ValueError:
+            return False
+
+    # === Normalize and Parse Target ===
+    target = args.target.strip()
+
+    # Ensure it has a scheme for urlparse to work correctly
+    if "://" not in target:
+        target = "http://" + target
+
+    parsed_url = urlparse(target)
+
+    # Save scheme
+    scheme = parsed_url.scheme or "http"
+
+    # Reconstruct display domain (strip scheme but keep everything else)
+    domain = parsed_url.netloc + parsed_url.path
+    if parsed_url.query:
+        domain += "?" + parsed_url.query
+    if parsed_url.fragment:
+        domain += "#" + parsed_url.fragment
+
+    # Host and port
+    host_only = parsed_url.hostname
+    port = parsed_url.port
+    is_ip_target = is_ip(host_only)
+
+    print(f"{C}Target: {W}{domain}\n")
+
+    # === Validate Target ===
+    def validate_target(host, is_ip, scheme, port):
+        # Validate IP or resolve domain
+        if is_ip:
+            try:
+                ipaddress.ip_address(host)
+            except ValueError:
+                print(f"{R}[!] Invalid IP address: {host}")
+                exit(1)
+        else:
+            try:
+                socket.gethostbyname(host)
+            except socket.gaierror:
+                print(f"{R}[!] Could not resolve domain: {host}")
+                exit(1)
+
+        # Build URL for connection test
+        if port:
+            test_url = f"{scheme}://{host}:{port}"
+        else:
+            test_url = f"{scheme}://{host}"
+
+        try:
+            response = requests.get(test_url, timeout=5)
+            if response.status_code != 200:
+                print(f"{Y}[!] Server responded with status code {R}{response.status_code}{W}")
+                print(f"{R}[!] Please enter a valid and reachable URL.")
+                exit(1)
+        except requests.exceptions.RequestException as e:
+            print(f"{R}[!] Could not connect to {test_url}")
+            print(f"{R}    Error: {e}")
+            print(f"{R}[!] Please enter a valid and reachable URL.")
+            exit(1)
+
+        # ✅ All validations passed
+        print(f"{G}[✓] Valid target. {Y}Proceeding with reconnaissance...{W}")
+
+    # === Call validator ===
+    validate_target(host_only, is_ip_target, scheme, port)
+
+
+    # stripped just domain(exmaple.com)
+    if "://" not in target:
+        target = "http://" + target
+
+    parsed_url = urlparse(target)
+    host = parsed_url.hostname
+    port = parsed_url.port
+    scheme = parsed_url.scheme or "http"
+
+    is_ip_target = is_ip(host)
+    domain_stripped = host  # Clean, consistent reference
+    #print(f"{C}Target: {W}{domain}\n")
+
 
     banner2 = r'''
  +-+-+-+-+-+ +-+-+-+-+-+-+-+
@@ -135,10 +228,10 @@ def main():
     ### IP Lookup
     if args.ip:
         try:
-            print(f'\n{Y}[~] IP lookup :{W}\n')
+            print(f'\n{Y}[~] IP lookup :{W} {domain_stripped}{W}\n')
 
             r = requests.get(
-                f"http://ip-api.com/json/{domain}?fields=status,message,continent,continentCode,country,countryCode,region,regionName,city,district,zip,lat,lon,timezone,offset,currency,isp,org,as,asname,reverse,mobile,proxy,hosting,query")
+                f"http://ip-api.com/json/{domain_stripped}?fields=status,message,continent,continentCode,country,countryCode,region,regionName,city,district,zip,lat,lon,timezone,offset,currency,isp,org,as,asname,reverse,mobile,proxy,hosting,query")
             res = r.json()
             countrycode = res["countryCode"]
             country = res["country"]
@@ -176,7 +269,7 @@ def main():
                        f"{G}[+] {C}city: {W}{city}\n"
                        f"{G}[+] {C}district: {W}{district}\n"
                        f"{G}[+] {C}zip: {W}{zip}\n"
-                       f"{G}[+] {C}timezone: {time_zone}\n"
+                       f"{G}[+] {C}timezone: {W}{time_zone}\n"
                        f"{G}[+] {C}name: {W}{name}\n"
                        f"{G}[+] {C}org: {W}{org}\n"
                        f"{G}[+] {C}ase: {W}{ass}\n"
@@ -204,7 +297,7 @@ def main():
     if args.whois:
         try:
             print(f'\n{Y}[~] Whois :{W}\n')
-            domain = whois.whois(f"{domain}")
+            domain = whois.whois(f"{domain_stripped}")
 
             '''domain_info = (f"{G}\u2514\u27A4 {C}name: {W}{domain.name}\n"
                            f"{G}\u2514\u27A4 {C}tld: {W}{domain.tld}\n"
@@ -231,7 +324,7 @@ def main():
     #SSl 
     if args.ssl:
         try:
-            target_host = f"{domain}".strip()
+            target_host = f"{domain_stripped}".strip()
             certificate_info = get_certificate_info(target_host)
             print_certificate_info(certificate_info)
         except Exception as e:
@@ -249,7 +342,7 @@ def main():
     if args.reversedns:
         try:
             print(f'\n{Y}[~] Reverse DNS :{W}\n')
-            api = requests.get(f'https://api.hackertarget.com/reversedns/?q={domain}', timeout=3).text.split('\n')
+            api = requests.get(f'https://api.hackertarget.com/reversedns/?q={domain_stripped}', timeout=3).text.split('\n')
             pprint(api)
 
         except Exception as e:
@@ -259,7 +352,7 @@ def main():
     if args.shareddns:
         try:
             print(f'\n{Y}[~] Shared DNS :{W}\n')
-            api = requests.get(f'https://api.hackertarget.com/findshareddns/?q={domain}', timeout=3).text.split('\n')
+            api = requests.get(f'https://api.hackertarget.com/findshareddns/?q={domain_stripped}', timeout=3).text.split('\n')
             pprint(api)
 
         except Exception as e:
@@ -271,7 +364,7 @@ def main():
             setup_config()
             api_keys = get_api_keys()
             
-            domain = f"{domain}"
+            domain = f"{domain_stripped}"
             
             start_time = time.time()
             print(f"{COLORS['BLUE']}\n[*] Starting subdomain enumeration...")
@@ -300,7 +393,7 @@ def main():
     ### better DMARC Record
     def display_dmarc_results(domain: str):
         try:
-            dmarc_results = check_dmarc(domain)
+            dmarc_results = check_dmarc(domain_stripped)
             
             print(f"\n{Colors.YELLOW}[+] DMARC Check for {Colors.CYAN}{domain}{Colors.RESET}")
 
@@ -340,7 +433,7 @@ def main():
             print(f"{Colors.RED}[!] Critical Error: {e}{Colors.RESET}")
     ## Dmarc
     if args.dmarc:
-        display_dmarc_results(domain)
+        display_dmarc_results(domain_stripped)
         print("\n" + "="*50 + "\n")
 
     ## web page crawler
@@ -358,7 +451,7 @@ def main():
     if args.robots:
         try:
 
-            target_host = f"https://{domain}"
+            target_host = f"https://{domain_stripped}"
             print(f'\n{Y}[~] Robots & sitemap :{W}\n')
             check_website(target_host)
 
