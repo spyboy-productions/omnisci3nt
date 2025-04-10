@@ -20,9 +20,9 @@ if robots_response.status_code == 200:
 
     # Find sitemap directive in robots.txt
     sitemap_directive = None
-    for line in robots_content.split('\n'):
+    for line in robots_content.split("\n"):
         if line.lower().startswith("sitemap:"):
-            sitemap_directive = line.split(':', 1)[1].strip()
+            sitemap_directive = line.split(":", 1)[1].strip()
             break
 
     if sitemap_directive:
@@ -34,7 +34,9 @@ if robots_response.status_code == 200:
             print("Sitemap content:")
             print(sitemap_response.text)
         else:
-            print("\nFailed to fetch sitemap. Status code:", sitemap_response.status_code)
+            print(
+                "\nFailed to fetch sitemap. Status code:", sitemap_response.status_code
+            )
     else:
         print("\nNo sitemap directive found in robots.txt.")
 

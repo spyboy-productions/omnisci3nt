@@ -3,13 +3,14 @@ from colorama import init, Fore
 import threading
 import time
 
-R = '\033[31m'  # red
-G = '\033[32m'  # green
-C = '\033[36m'  # cyan
-W = '\033[0m'   # white
-Y = '\033[33m'  # yellow
+R = "\033[31m"  # red
+G = "\033[32m"  # green
+C = "\033[36m"  # cyan
+W = "\033[0m"  # white
+Y = "\033[33m"  # yellow
 
 init()
+
 
 def find_subdomains(domain, filename, timeout=20):
     subdomains_found = []
@@ -23,7 +24,9 @@ def find_subdomains(domain, filename, timeout=20):
             if response.status_code == 200:
                 with subdomains_lock:
                     subdomains_found.append(subdomain_url)
-                    print(f"{Fore.GREEN}Subdomain Found [+]: {subdomain_url}{Fore.RESET}")
+                    print(
+                        f"{Fore.GREEN}Subdomain Found [+]: {subdomain_url}{Fore.RESET}"
+                    )
         except requests.exceptions.RequestException as e:
             if "Max retries exceeded with url" in str(e):
                 pass
@@ -51,6 +54,7 @@ def find_subdomains(domain, filename, timeout=20):
     print("\nSubdomains Found Links:\n")
     for link in subdomains_found:
         print(link)
+
 
 if __name__ == "__main__":
     domain = "youtube.com"

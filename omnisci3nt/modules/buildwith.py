@@ -3,11 +3,12 @@ import builtwith
 from bs4 import BeautifulSoup
 import re
 
-R = '\033[31m'  # red
-G = '\033[32m'  # green
-C = '\033[36m'  # cyan
-W = '\033[0m'   # white
-Y = '\033[33m'  # yellow
+R = "\033[31m"  # red
+G = "\033[32m"  # green
+C = "\033[36m"  # cyan
+W = "\033[0m"  # white
+Y = "\033[33m"  # yellow
+
 
 def analyze_website(url, timeout=10):
     try:
@@ -74,7 +75,9 @@ def extract_javascript_libraries(content):
 
 if __name__ == "__main__":
     website_url = input("Enter the website URL: ")
-    programming_languages, technologies, javascript_libraries, web_server = analyze_website(website_url)
+    programming_languages, technologies, javascript_libraries, web_server = (
+        analyze_website(website_url)
+    )
 
     if programming_languages:
         print("Detected programming languages:", ", ".join(programming_languages))

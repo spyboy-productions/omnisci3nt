@@ -2,6 +2,7 @@ import sys
 import socket
 from scapy.layers.inet import IP, ICMP, sr
 
+
 def traceroute(domain):
     try:
         target_ip = socket.gethostbyname(domain)
@@ -25,6 +26,7 @@ def traceroute(domain):
         else:
             print(f"{ttl}: *")
 
+
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Usage: python traceroute.py <domain>")
@@ -33,7 +35,7 @@ if __name__ == "__main__":
     domain = sys.argv[1]
     traceroute(domain)
 
-''' to run from another file
+""" to run from another file
 # main.py
 from traceroute import traceroute  # Import the traceroute function
 
@@ -43,4 +45,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-'''
+"""
