@@ -562,7 +562,7 @@ def validate_target(host, is_ip_target, scheme, port):
 # Argument Handlers
 def handle_args():
     parser = argparse.ArgumentParser(
-        description=f"{R}Example:{G} {sys.argv[0]} example.com -whois{Y}"
+        description=f"{R}Example:{G} omnisci3nt example.com -whois{Y}"
     )
     parser.add_argument("target", help="Target domain or IP")
     parser.add_argument("-ip", action="store_true", help="Perform IP lookup")
