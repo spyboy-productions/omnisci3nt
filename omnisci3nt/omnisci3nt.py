@@ -513,7 +513,7 @@ def run_all(domain):
     run_directory_bruteforce(domain)
     run_port_scan(domain)
     find_admin_panels_on_domain(domain)
-    run_all_completed()
+    run_all_completed(output_filename)
 
 
 # Utility Functions
