@@ -465,9 +465,7 @@ def find_admin_panels_on_domain(domain):
         sys.__stdout__.write(f"{R}[!] Error: {e}{W}\n")
 
 
-def write_to_file_and_stdout(domain):
-    output_filename = f"{domain}-recon.txt"
-
+def write_to_file_and_stdout(output_filename):
     class Tee:
         def __init__(self, *files):
             self.files = files
@@ -488,9 +486,16 @@ def write_to_file_and_stdout(domain):
         sys.stdout = tee
 
 
+def run_all_completed(output_filename):
+    sys.stdout = sys.__stdout__  # Restore standard output
+    print(f"\n{G}[~] {C}Output saved to '{output_filename}'\n")
+
+
 def run_all(domain):
+    output_filename = f"{domain}-recon.txt"
+    write_to_file_and_stdout(output_filename)
+
     print(f"Running all reconnaissance modules for {domain}")
-    write_to_file_and_stdout(domain)
     get_ip(domain)
     headers(domain)
     perform_whois(domain)
@@ -508,6 +513,7 @@ def run_all(domain):
     run_directory_bruteforce(domain)
     run_port_scan(domain)
     find_admin_panels_on_domain(domain)
+    run_all_completed()
 
 
 # Utility Functions
