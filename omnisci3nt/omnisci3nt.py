@@ -22,7 +22,12 @@ from .modules.robo_checker import check_website
 from .modules.buildwith import analyze_website
 from .modules.wayback import fetch_wayback_links
 from .modules.social_media import extract_links_and_emails
-from .modules.better_subdomain import setup_config, get_api_keys, enumerate_subdomains, COLORS
+from .modules.better_subdomain import (
+    setup_config,
+    get_api_keys,
+    enumerate_subdomains,
+    COLORS,
+)
 from .modules.dirtest import start_scan
 from .modules.portscan import ps
 from .modules.admin_finder import find_admin_panels
@@ -56,7 +61,7 @@ banner = r"""
 """
 
 
-def print_banner():
+def print_program_banner():
     """
     prints the program banners
     """
@@ -69,6 +74,24 @@ def print_banner():
     print(
         f"____________________________________________________________________________\n"
     )
+
+
+def print_recon_started_banner():
+    banner = r"""
+    +-+-+-+-+-+ +-+-+-+-+-+-+-+
+    |R|e|c|o|n| |S|t|a|r|t|e|d|
+    +-+-+-+-+-+ +-+-+-+-+-+-+-+
+    """
+    print(f"{G}{banner}")
+
+
+def print_recon_completed_banner():
+    banner = r"""
+    +-+-+-+-+-+ +-+-+-+-+-+-+-+-+-+
+    |R|e|c|o|n| |c|o|m|p|l|e|t|e|d|
+    +-+-+-+-+-+ +-+-+-+-+-+-+-+-+-+
+    """
+    print(f"{M}{banner}")
 
 
 # Global flag to handle graceful shutdown
@@ -262,7 +285,7 @@ def run_dmarc_check(domain):
     print("\n" + "=" * 50 + "\n")
 
 
-def run_sharedns(domain):
+def run_shareddns(domain):
     try:
         print(f"\n{Y}[~] Shared DNS :{W}\n")
         api = requests.get(
@@ -442,15 +465,39 @@ def find_admin_panels_on_domain(domain):
         sys.__stdout__.write(f"{R}[!] Error: {e}{W}\n")
 
 
+def write_to_file_and_stdout(domain):
+    output_filename = f"{domain}-recon.txt"
+
+    class Tee:
+        def __init__(self, *files):
+            self.files = files
+
+        def write(self, obj):
+            for file in self.files:
+                if file.closed:
+                    file = open(file.name, "a")  # Re-open file if it's closed
+                file.write(obj)
+
+        def flush(self):
+            for file in self.files:
+                if not file.closed:
+                    file.flush()  # Ensure flushing works for open files
+
+    with open(output_filename, "w") as output_file:
+        tee = Tee(sys.stdout, output_file)
+        sys.stdout = tee
+
+
 def run_all(domain):
     print(f"Running all reconnaissance modules for {domain}")
+    write_to_file_and_stdout(domain)
     get_ip(domain)
     headers(domain)
     perform_whois(domain)
     check_ssl_certificate(domain)
     run_dns_enumeration(domain)
     run_reversedns(domain)
-    run_sharedns(domain)
+    run_shareddns(domain)
     run_dmarc_check(domain)
     run_subdomain_enumeration(domain)
     run_web_crawl(domain)
@@ -512,28 +559,10 @@ def validate_target(host, is_ip_target, scheme, port):
     print(f"{G}[✓] Valid target. {Y}Proceeding with reconnaissance...{W}")
 
 
-def print_banner():
-    banner2 = r"""
-    +-+-+-+-+-+ +-+-+-+-+-+-+-+
-    |R|e|c|o|n| |S|t|a|r|t|e|d|
-    +-+-+-+-+-+ +-+-+-+-+-+-+-+
-    """
-    print(f"{G}{banner2}")
-
-
-def print_completion_banner():
-    banner3 = r"""
-    +-+-+-+-+-+ +-+-+-+-+-+-+-+-+-+
-    |R|e|c|o|n| |c|o|m|p|l|e|t|e|d|
-    +-+-+-+-+-+ +-+-+-+-+-+-+-+-+-+
-    """
-    print(f"{M}{banner3}")
-
-
 # Argument Handlers
 def handle_args():
     parser = argparse.ArgumentParser(
-        description=f"{R}Example:{G} python omnisci3nt.py example.com -whois{Y}"
+        description=f"{R}Example:{G} {sys.argv[0]} example.com -whois{Y}"
     )
     parser.add_argument("target", help="Target domain or IP")
     parser.add_argument("-ip", action="store_true", help="Perform IP lookup")
@@ -569,6 +598,7 @@ def handle_args():
 
 # Main Execution
 def main():
+    print_program_banner()
     args = handle_args()
 
     target = args.target.strip()
@@ -589,7 +619,7 @@ def main():
     validate_target(host, is_ip_target, scheme, port)
 
     # Start Reconnaissance
-    print_banner()
+    print_recon_started_banner()
     start_time = time.time()
 
     if args.all:
@@ -608,7 +638,7 @@ def main():
         if args.reversedns:
             run_reversedns(domain)
         if args.shareddns:
-            run_sharedns(domain)
+            run_shareddns(domain)
         if args.dmarc:
             run_dmarc_check(domain)
         if args.subdomains:
@@ -630,7 +660,7 @@ def main():
         if args.admin:
             find_admin_panels_on_domain(domain)
 
-    print_completion_banner()
+    print_recon_completed_banner()
 
     end_time = time.time()
     elapsed_time = end_time - start_time

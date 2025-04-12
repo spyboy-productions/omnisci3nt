@@ -84,32 +84,50 @@ cd omnisci3nt
 pip3 install -r requirements.txt
 ```
 
+### ⭔ Installation via pipx (recommended)
+
+To install **Omnisci3nt** using `pipx`, follow the instructions below:
+
+#### Step 1: Install `pipx` (if not already installed)
+First, ensure that you have `pipx` installed on your system. You can install it using `pip`:
+
+```bash
+python3 -m pip install --user pipx
+python3 -m pipx ensurepath
+```
+
+#### Step 2: Install Omnisci3nt
+
+```bash
+pipx install git+https://github.com/spyboy-productions/omnisci3nt.git
+```
+
 ### ⭔ Example Usage:
 ```
-python omnisci3nt.py -whois example.com
+omnisci3nt -whois example.com
 ```
 
 ### **Usage Commands**
 | Command | Description |
 |---------|-------------|
-| `python3 omnisci3nt.py -ip <domain>` | Perform an IP lookup |
-| `python3 omnisci3nt.py -headers <domain>` | Fetch HTTP headers |
-| `python3 omnisci3nt.py -whois <domain>` | Retrieve WHOIS information |
-| `python3 omnisci3nt.py -ssl <domain>` | Retrieve SSL certificate information |
-| `python3 omnisci3nt.py -dns <domain>` | Perform DNS enumeration |
-| `python3 omnisci3nt.py -reversedns <domain>` | Show Reverse DNS |
-| `python3 omnisci3nt.py -shareddns <domain>` | Show Shared DNS |
-| `python3 omnisci3nt.py -subdomains <domain>` | Find subdomains |
-| `python3 omnisci3nt.py -dmarc <domain>` | Check DMARC record |
-| `python3 omnisci3nt.py -crawl <domain>` | Crawl the target website files
-| `python3 omnisci3nt.py -robots <domain>` | fetch robots.txt and sitemap |
-| `python3 omnisci3nt.py -tech <domain>` | Analyze web technologies |
-| `python3 omnisci3nt.py -wayback <domain>` | Fetch Wayback Machine data |
-| `python3 omnisci3nt.py -social <domain>` | Find social media links |
-| `python3 omnisci3nt.py -dirscan <domain>` | Perform directory scanning |
-| `python3 omnisci3nt.py -portscan <domain>` | Perform a port scan |
-| `python3 omnisci3nt.py -admin <domain>` | Find admin login pages |
-| `python3 omnisci3nt.py -all <domain>` | Run every module |
+| `omnisci3nt -ip <domain>` | Perform an IP lookup |
+| `omnisci3nt -headers <domain>` | Fetch HTTP headers |
+| `omnisci3nt -whois <domain>` | Retrieve WHOIS information |
+| `omnisci3nt -ssl <domain>` | Retrieve SSL certificate information |
+| `omnisci3nt -dns <domain>` | Perform DNS enumeration |
+| `omnisci3nt -reversedns <domain>` | Show Reverse DNS |
+| `omnisci3nt -shareddns <domain>` | Show Shared DNS |
+| `omnisci3nt -subdomains <domain>` | Find subdomains |
+| `omnisci3nt -dmarc <domain>` | Check DMARC record |
+| `omnisci3nt -crawl <domain>` | Crawl the target website files
+| `omnisci3nt -robots <domain>` | fetch robots.txt and sitemap |
+| `omnisci3nt -tech <domain>` | Analyze web technologies |
+| `omnisci3nt -wayback <domain>` | Fetch Wayback Machine data |
+| `omnisci3nt -social <domain>` | Find social media links |
+| `omnisci3nt -dirscan <domain>` | Perform directory scanning |
+| `omnisci3nt -portscan <domain>` | Perform a port scan |
+| `omnisci3nt -admin <domain>` | Find admin login pages |
+| `omnisci3nt -all <domain>` | Run every module |
 
 ---
 
