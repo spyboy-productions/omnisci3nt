@@ -1,4 +1,18 @@
-<h4 align="center">⭐️ If you find this GitHub repo useful, please consider giving it a star! ⭐️</h4>  
+<h4 align="center">⭐️ If you find this GitHub repo useful, please consider giving it a star! ⭐️</h4>
+<p align="center">
+  <a href="https://github.com/spyboy-productions/omnisci3nt/stargazers">
+    <img src="https://img.shields.io/github/stars/spyboy-productions/omnisci3nt?color=yellow&style=for-the-badge" alt="Stars">
+  </a>
+  <a href="https://github.com/spyboy-productions/omnisci3nt/network/members">
+    <img src="https://img.shields.io/github/forks/spyboy-productions/omnisci3nt?color=orange&style=for-the-badge" alt="Forks">
+  </a>
+  <a href="https://github.com/spyboy-productions/omnisci3nt/issues">
+    <img src="https://img.shields.io/github/issues/spyboy-productions/omnisci3nt?style=for-the-badge" alt="Issues">
+  </a>
+  <a href="https://github.com/spyboy-productions/omnisci3nt/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/spyboy-productions/omnisci3nt?style=for-the-badge" alt="License">
+  </a>
+</p>
 <p align="center">
     <a href="https://spyboy.in/twitter">
         <img src="https://img.shields.io/badge/-TWITTER-black?logo=twitter&style=for-the-badge">
@@ -86,6 +100,10 @@ git clone https://github.com/spyboy-productions/omnisci3nt.git
 cd omnisci3nt
 pip3 install -r requirements.txt
 python3 -m omnisci3nt.omnisci3nt -h
+```
+### ⭔ Example Usage :
+```
+python -m omnisci3nt.omnisci3nt -whois example.com
 ```
 
 ---
