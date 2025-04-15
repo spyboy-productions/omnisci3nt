@@ -156,6 +156,22 @@ omnisci3nt -whois example.com
 | `-admin <domain>` | Admin panel finder |
 | `-all <domain>` | Run all tools in one go |
 
+### Optional command for pipx:
+
+```
+🔄 To upgrade from GitHub
+pipx upgrade omnisci3nt
+
+# If you originally installed using a local directory (pipx install .), then use:
+pipx install . --force
+
+❌ To uninstall
+pipx uninstall omnisci3nt
+
+# Bonus: Check where it's installed
+pipx list
+```
+
 ---
 
 ## 🤝 Contribute
