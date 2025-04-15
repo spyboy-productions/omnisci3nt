@@ -488,7 +488,7 @@ def write_to_file_and_stdout(output_filename):
 
 def run_all_completed(output_filename):
     sys.stdout = sys.__stdout__  # Restore standard output
-    print(f"\n{G}[~] {C}Output saved to '{output_filename}'\n")
+    print(f"\n{G}[~] {C}Output saved to '{os.path.abspath(output_filename)}'\n")
 
 
 def run_all(domain):
