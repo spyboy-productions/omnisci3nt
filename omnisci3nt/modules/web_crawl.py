@@ -3,11 +3,12 @@ from bs4 import BeautifulSoup
 import re
 from urllib.parse import urlparse, urljoin
 
-R = '\033[31m'  # red
-G = '\033[32m'  # green
-C = '\033[36m'  # cyan
-W = '\033[0m'   # white
-Y = '\033[33m'  # yellow
+R = "\033[31m"  # red
+G = "\033[32m"  # green
+C = "\033[36m"  # cyan
+W = "\033[0m"  # white
+Y = "\033[33m"  # yellow
+
 
 def perform_web_recon(website_url):
     # Set timeout values in seconds
@@ -19,7 +20,7 @@ def perform_web_recon(website_url):
     # Check if the request was successful
     if response.status_code == 200:
         # Parse the HTML content using BeautifulSoup
-        soup = BeautifulSoup(response.content, 'html.parser')
+        soup = BeautifulSoup(response.content, "html.parser")
 
         # Lists to store URLs of different types of files
         js_files = []
@@ -31,31 +32,31 @@ def perform_web_recon(website_url):
         external_links = set()
 
         # Regular expression pattern to match file extensions
-        file_extension_pattern = r'\.([a-zA-Z0-9]+)$'
+        file_extension_pattern = r"\.([a-zA-Z0-9]+)$"
 
         # Find all <script> tags and extract src URLs
-        for script_tag in soup.find_all('script', src=True):
-            src = script_tag['src']
+        for script_tag in soup.find_all("script", src=True):
+            src = script_tag["src"]
             js_files.append(src)
 
         # Find all <link> tags with rel="stylesheet" and extract href URLs
-        for link_tag in soup.find_all('link', rel='stylesheet', href=True):
-            href = link_tag['href']
+        for link_tag in soup.find_all("link", rel="stylesheet", href=True):
+            href = link_tag["href"]
             css_files.append(href)
 
         # Find all <a> tags and extract href URLs
-        for a_tag in soup.find_all('a', href=True):
-            href = a_tag['href']
+        for a_tag in soup.find_all("a", href=True):
+            href = a_tag["href"]
             if re.search(file_extension_pattern, href):
                 extension = re.search(file_extension_pattern, href).group(1)
-                if extension == 'html':
+                if extension == "html":
                     html_files.append(href)
-                elif extension == 'php':
+                elif extension == "php":
                     php_files.append(href)
                 else:
                     image_files.append(href)
             else:
-                if href.startswith('#'):
+                if href.startswith("#"):
                     continue
                 full_url = urljoin(website_url, href)
                 parsed_url = urlparse(full_url)
@@ -94,16 +95,18 @@ def perform_web_recon(website_url):
             print(external_link)
 
         # Directory search and print details
-        directory_search = website_url + "/directory"  # Replace with the directory you want to search
+        directory_search = (
+            website_url + "/directory"
+        )  # Replace with the directory you want to search
         directory_response = requests.get(directory_search, timeout=timeout)
 
         if directory_response.status_code == 200:
-            directory_soup = BeautifulSoup(directory_response.content, 'html.parser')
+            directory_soup = BeautifulSoup(directory_response.content, "html.parser")
             directory_links = []
 
             # Find all <a> tags in the directory page
-            for a_tag in directory_soup.find_all('a', href=True):
-                href = a_tag['href']
+            for a_tag in directory_soup.find_all("a", href=True):
+                href = a_tag["href"]
                 full_url = urljoin(directory_search, href)
                 directory_links.append(full_url)
 
@@ -112,7 +115,10 @@ def perform_web_recon(website_url):
                 print(directory_link)
 
         else:
-            print("\nFailed to fetch directory. Status code:", directory_response.status_code)
+            print(
+                "\nFailed to fetch directory. Status code:",
+                directory_response.status_code,
+            )
 
         # Print the counts
         print(f"\n{G}[+] {C}Total JS Files:{W}", len(js_files))
@@ -125,6 +131,7 @@ def perform_web_recon(website_url):
 
     else:
         print(f"{R}Failed to fetch the website. Status code:", response.status_code)
+
 
 if __name__ == "__main__":
     target_website = "https://spyboy.blog"  # Replace with your desired URL

@@ -1,17 +1,20 @@
 import requests
 import re
 
+
 def extract_links_and_emails(url, timeout=10):
     try:
         response = requests.get(url, timeout=timeout)
         content = response.text
 
         # Pattern to match social media links
-        social_media_pattern = r'(https?://(?:www\.)?(?:facebook|twitter|instagram)\.com/[^"\'>\s]+)'
+        social_media_pattern = (
+            r'(https?://(?:www\.)?(?:facebook|twitter|instagram)\.com/[^"\'>\s]+)'
+        )
         social_media_links = re.findall(social_media_pattern, content, re.IGNORECASE)
 
         # Pattern to match email addresses
-        email_pattern = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+        email_pattern = r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b"
         emails = re.findall(email_pattern, content)
 
         return social_media_links, emails
