@@ -1,159 +1,179 @@
-<h4 align="center"> If you find this GitHub repo useful, please consider giving it a star! ⭐️ </h4> 
+<h4 align="center">⭐️ If you find this GitHub repo useful, please consider giving it a star! ⭐️</h4>  
 <p align="center">
     <a href="https://spyboy.in/twitter">
-      <img src="https://img.shields.io/badge/-TWITTER-black?logo=twitter&style=for-the-badge">
+        <img src="https://img.shields.io/badge/-TWITTER-black?logo=twitter&style=for-the-badge">
     </a>
     &nbsp;
     <a href="https://spyboy.in/">
-      <img src="https://img.shields.io/badge/-spyboy.in-black?logo=google&style=for-the-badge">
+        <img src="https://img.shields.io/badge/-spyboy.in-black?logo=google&style=for-the-badge">
     </a>
     &nbsp;
     <a href="https://spyboy.blog/">
-      <img src="https://img.shields.io/badge/-spyboy.blog-black?logo=wordpress&style=for-the-badge">
+        <img src="https://img.shields.io/badge/-spyboy.blog-black?logo=wordpress&style=for-the-badge">
     </a>
     &nbsp;
     <a href="https://spyboy.in/Discord">
-      <img src="https://img.shields.io/badge/-Discord-black?logo=discord&style=for-the-badge">
+        <img src="https://img.shields.io/badge/-Discord-black?logo=discord&style=for-the-badge">
     </a>
-  
 </p>
 
-<img width="100%" align="centre" src="https://github.com/spyboy-productions/omnisci3nt/blob/main/image/omnisci3nt1.png" />
-
-Omnisci3nt is a powerful web reconnaissance tool designed to unravel the concealed intricacies of the online realm. With a comprehensive array of capabilities, Omnisci3nt offers users the means to delve into various aspects of a target domain, including IP lookup, domain information, SSL certificate details, DNS enumeration, subdomain enumeration, port scanning, web crawling, analysis of technologies utilized, Wayback Machine exploration, DMARC record examination, social media link discovery, and more.
-
-Whether you're a cybersecurity professional, researcher, or individual seeking to gain insights into a particular domain, Omnisci3nt's versatile toolkit offers a comprehensive solution for navigating the intricate landscape of the web.
-
-### Run Online Free On Google Colab
-
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github//spyboy-productions/omnisci3nt/blob/main/omnisci3nt.ipynb)
-
-`For the best experience and to utilize the tool's full potential, install it.`
-
-### 🛠 Key Features:
-
-| Feature | Description |
-|---------|-------------|
-| IP Lookup | Retrieve IP-based information |
-| WHOIS Lookup | Extract domain registration details |
-| HTTP Header Analysis | Fetch and analyze HTTP headers |
-| SSL Inspection | Analyze SSL certificates |
-| DNS Enumeration | Retrieve DNS records and check Reverse & Shared DNS |
-| Subdomain Enumeration | Discover subdomains |
-| Port Scanning | Identify open ports |
-| Directory Enumeration | List files and directories |
-| Web Crawling | Analyze website structure and fetch robots.txt & sitemap |
-| Technology Detection | Identify tech stacks used by the website |
-| Wayback Machine | View archived pages from the past |
-| DMARC Analysis | Examine email security measures |
-| Social Media Discovery | Extract social media links and emails |
-| Admin Panel Detection | Locate admin login pages |
-| Reverse DNS Lookup | Identify hostnames associated with an IP |
-| Shared DNS Lookup | Find domains sharing the same DNS server |
-| Website Crawling | Extract internal links and file structure |
-| Full Recon | Run all modules for a complete analysis |
+<p align="center">
+    <img width="100%" src="https://github.com/spyboy-productions/omnisci3nt/blob/main/image/omnisci3nt1.png" />
+</p>
 
 ---
 
-<h4 align="center">
-  OS compatibility :
-  <br><br>
+## 🔍 Omnisci3nt: Web Reconnaissance Tool
+
+Omnisci3nt is a powerful and comprehensive web reconnaissance toolkit tailored to cybersecurity professionals, ethical hackers, and digital investigators. It allows you to uncover hidden information about domains, analyze configurations, detect technologies, and explore archived content from the web.
+
+Whether you're analyzing a target for vulnerabilities or simply exploring the technical details of a website, Omnisci3nt provides an all-in-one solution to automate and streamline your reconnaissance process.
+
+---
+
+### ☁️ Run It Instantly on Google Colab (No Installation Needed)
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/spyboy-productions/omnisci3nt/blob/main/omnisci3nt.ipynb)
+
+> 💡 *For full functionality and better performance, a local installation is recommended.*
+
+---
+
+### ⚙️ Key Features
+
+| Feature | Description |
+|--------|-------------|
+| IP Lookup | Retrieve geolocation and ISP data |
+| WHOIS Lookup | Get domain registration information |
+| HTTP Header Analysis | Analyze response headers |
+| SSL Inspection | Fetch and inspect SSL certificate |
+| DNS Enumeration | Gather DNS, Reverse, and Shared DNS records |
+| Subdomain Discovery | Identify subdomains using various techniques |
+| Port Scanning | Scan and detect open ports |
+| Directory Brute-Force | Discover hidden files and directories |
+| Web Crawling | Fetch links, robots.txt, and sitemap.xml |
+| Tech Detection | Detect technologies used by the website |
+| Wayback Machine | View archived pages over time |
+| DMARC Analysis | Check domain email authentication (SPF, DKIM, DMARC) |
+| Social Media Discovery | Extract social profiles and emails |
+| Admin Panel Detection | Identify admin login portals |
+| Reverse DNS Lookup | Get hostnames from IP addresses |
+| Shared DNS Lookup | Discover other domains on the same DNS server |
+| Full Recon Mode | Run all modules for deep analysis |
+
+---
+
+<h4 align="center">🖥️ OS Compatibility</h4>
+<p align="center">
   <img src="https://img.shields.io/badge/Windows-05122A?style=for-the-badge&logo=windows">
   <img src="https://img.shields.io/badge/Linux-05122A?style=for-the-badge&logo=linux">
   <img src="https://img.shields.io/badge/Android-05122A?style=for-the-badge&logo=android">
   <img src="https://img.shields.io/badge/macOS-05122A?style=for-the-badge&logo=macos">
-</h4>
+</p>
 
-<h4 align="center"> 
-Requirements:
-<br><br>
-<img src="https://img.shields.io/badge/Python-05122A?style=for-the-badge&logo=python">
-<img src="https://img.shields.io/badge/Git-05122A?style=for-the-badge&logo=git">
-</h4>
+<h4 align="center">🧰 Requirements</h4>
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-05122A?style=for-the-badge&logo=python">
+  <img src="https://img.shields.io/badge/Git-05122A?style=for-the-badge&logo=git">
+</p>
 
-### ⭔ Installation
 ---
 
-```
+### 🧪 Installation
+
+```bash
 git clone https://github.com/spyboy-productions/omnisci3nt.git
-```
-```
 cd omnisci3nt
-```
-```
 pip3 install -r requirements.txt
+python3 -m omnisci3nt.omnisci3nt -h
 ```
 
-### ⭔ Installation via pipx (recommended)
+---
 
-To install **Omnisci3nt** using `pipx`, follow the instructions below:
+### 🚀 pipx Installation (Recommended)
 
-#### Step 1: Install `pipx` (if not already installed)
-First, ensure that you have `pipx` installed on your system. You can install it using `pip`:
+Install via [`pipx`](https://github.com/pypa/pipx) for isolated, global access:
 
+#### Step 1: Install `pipx`
 ```bash
 python3 -m pip install --user pipx
 python3 -m pipx ensurepath
 ```
 
 #### Step 2: Install Omnisci3nt
-
 ```bash
 pipx install git+https://github.com/spyboy-productions/omnisci3nt.git
 ```
 
-### ⭔ Example Usage:
-```
+---
+
+### 💡 Example Usage
+
+```bash
 omnisci3nt -whois example.com
 ```
 
-### **Usage Commands**
+---
+
+### 🧭 All Command Options
+
 | Command | Description |
-|---------|-------------|
-| `omnisci3nt -ip <domain>` | Perform an IP lookup |
-| `omnisci3nt -headers <domain>` | Fetch HTTP headers |
-| `omnisci3nt -whois <domain>` | Retrieve WHOIS information |
-| `omnisci3nt -ssl <domain>` | Retrieve SSL certificate information |
-| `omnisci3nt -dns <domain>` | Perform DNS enumeration |
-| `omnisci3nt -reversedns <domain>` | Show Reverse DNS |
-| `omnisci3nt -shareddns <domain>` | Show Shared DNS |
-| `omnisci3nt -subdomains <domain>` | Find subdomains |
-| `omnisci3nt -dmarc <domain>` | Check DMARC record |
-| `omnisci3nt -crawl <domain>` | Crawl the target website files
-| `omnisci3nt -robots <domain>` | fetch robots.txt and sitemap |
-| `omnisci3nt -tech <domain>` | Analyze web technologies |
-| `omnisci3nt -wayback <domain>` | Fetch Wayback Machine data |
-| `omnisci3nt -social <domain>` | Find social media links |
-| `omnisci3nt -dirscan <domain>` | Perform directory scanning |
-| `omnisci3nt -portscan <domain>` | Perform a port scan |
-| `omnisci3nt -admin <domain>` | Find admin login pages |
-| `omnisci3nt -all <domain>` | Run every module |
+|--------|-------------|
+| `-ip <domain>` | IP geolocation info |
+| `-headers <domain>` | Show HTTP headers |
+| `-whois <domain>` | WHOIS lookup |
+| `-ssl <domain>` | SSL certificate analysis |
+| `-dns <domain>` | DNS enumeration |
+| `-reversedns <domain>` | Reverse DNS lookup |
+| `-shareddns <domain>` | Domains on the same DNS |
+| `-subdomains <domain>` | Subdomain enumeration |
+| `-dmarc <domain>` | DMARC record validation |
+| `-crawl <domain>` | Crawl and fetch links |
+| `-robots <domain>` | Fetch robots.txt and sitemap.xml |
+| `-tech <domain>` | Detect technologies used |
+| `-wayback <domain>` | Archive data from Wayback Machine |
+| `-social <domain>` | Extract social media/email |
+| `-dirscan <domain>` | Directory brute-force |
+| `-portscan <domain>` | Port scanning |
+| `-admin <domain>` | Admin panel finder |
+| `-all <domain>` | Run all tools in one go |
 
 ---
 
-## Contribution:
+## 🤝 Contribute
 
-Contributions and feature requests are welcome! If you encounter any issues or have ideas for improvement, feel free to open an issue or submit a pull request.
+Pull requests and issues are welcome! Found a bug? Have an idea? Let’s collaborate to improve Omnisci3nt.
 
-#### 😴🥱😪💤 ToDo:
-
-- add urlscan.io
-- spoof check (mx record checkup) if domain email is spoofable
-- reverse IP lookup
-- banner grabbing
-- CVE reporting (check for top vulnerability)
-
-#### 💬 If having an issue [Chat here](https://discord.gg/ZChEmMwE8d)
-[![Discord Server](https://discord.com/api/guilds/726495265330298973/embed.png)](https://discord.gg/ZChEmMwE8d)
-
-### ⭔ Snapshots:
 ---
 
-<img width="100%" align="centre" src="https://github.com/spyboy-productions/omnisci3nt/blob/main/image/Screenshot_2023-08-16_at_3.06.02_PM.png" />
-<img width="100%" align="centre" src="https://github.com/spyboy-productions/omnisci3nt/blob/main/image/Screenshot_2023-08-16_at_3.06.16_PM.png" />
-<img width="100%" align="centre" src="https://github.com/spyboy-productions/omnisci3nt/blob/main/image/Screenshot_2023-08-16_at_3.06.42_PM.png" />
-<img width="100%" align="centre" src="https://github.com/spyboy-productions/omnisci3nt/blob/main/image/Screenshot_2023-08-16_at_3.07.06_PM.png" />
-<img width="100%" align="centre" src="https://github.com/spyboy-productions/omnisci3nt/blob/main/image/Screenshot_2023-08-16_at_3.07.26_PM.png" />
+## 🧠 To-Do List
 
-<h4 align="center"> If you find this GitHub repo useful, please consider giving it a star! ⭐️ </h4> 
+- [ ] Integration with [urlscan.io](https://urlscan.io)
+- [ ] Email spoofability check via MX records
+- [ ] Reverse IP lookup (domain neighbors)
+- [ ] Banner grabbing
+- [ ] CVE-based vulnerability check (top techs)
 
+---
+
+## 💬 Community & Support
+
+Need help or want to suggest a feature? Join our Discord server and connect with the community.
+
+[![Join Discord](https://discord.com/api/guilds/726495265330298973/embed.png)](https://discord.gg/ZChEmMwE8d)
+
+---
+
+### 📸 Snapshots
+
+<p align="center">
+  <img src="https://github.com/spyboy-productions/omnisci3nt/blob/main/image/Screenshot_2023-08-16_at_3.06.02_PM.png" width="100%" />
+  <img src="https://github.com/spyboy-productions/omnisci3nt/blob/main/image/Screenshot_2023-08-16_at_3.06.16_PM.png" width="100%" />
+  <img src="https://github.com/spyboy-productions/omnisci3nt/blob/main/image/Screenshot_2023-08-16_at_3.06.42_PM.png" width="100%" />
+  <img src="https://github.com/spyboy-productions/omnisci3nt/blob/main/image/Screenshot_2023-08-16_at_3.07.06_PM.png" width="100%" />
+  <img src="https://github.com/spyboy-productions/omnisci3nt/blob/main/image/Screenshot_2023-08-16_at_3.07.26_PM.png" width="100%" />
+</p>
+
+---
+
+<h4 align="center">⭐️ If this project helped you, please give it a star! ⭐️</h4>
