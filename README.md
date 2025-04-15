@@ -37,7 +37,7 @@
 
 ---
 
-## 🔍 Omnisci3nt: Web Reconnaissance Tool
+## 🕵️‍♂️ Omnisci3nt: One Tool to Rule All Recon
 
 Omnisci3nt is a powerful and comprehensive web reconnaissance toolkit tailored to cybersecurity professionals, ethical hackers, and digital investigators. It allows you to uncover hidden information about domains, analyze configurations, detect technologies, and explore archived content from the web.
 
