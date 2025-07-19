@@ -31,6 +31,7 @@ from .modules.better_subdomain import (
 from .modules.dirtest import start_scan
 from .modules.portscan import ps
 from .modules.admin_finder import find_admin_panels
+from .modules.vuln_scanner import run_vuln_scanner
 
 base_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -513,6 +514,7 @@ def run_all(domain):
     run_directory_bruteforce(domain)
     run_port_scan(domain)
     find_admin_panels_on_domain(domain)
+    run_vuln_scanner(domain)
     run_all_completed(output_filename)
 
 
@@ -599,6 +601,7 @@ def handle_args():
     parser.add_argument("-portscan", action="store_true", help="Perform port scanning")
     parser.add_argument("-admin", action="store_true", help="Find admin panels")
     parser.add_argument("-all", action="store_true", help="Run all modules")
+    parser.add_argument("-vulnscan", action="store_true", help="Run vulnerability scanner")
     return parser.parse_args()
 
 
@@ -665,6 +668,8 @@ def main():
             run_port_scan(domain)
         if args.admin:
             find_admin_panels_on_domain(domain)
+        if args.vulnscan:
+            run_vuln_scanner(domain)
 
     print_recon_completed_banner()
 
