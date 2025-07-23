@@ -60,6 +60,33 @@ def dnsrec(domain):
         return result
 
 
+def check_mx_spoof(domain):
+    try:
+        resolver = dns.resolver.Resolver()
+        answers = resolver.resolve(domain, 'MX')
+        mx_hosts = [str(r.exchange).rstrip('.') for r in answers]
+        print(f"{G}[+] {C}MX Records:{W} {', '.join(mx_hosts)}")
+        # List of generic/free mail providers
+        generic_providers = [
+            'gmail.com', 'googlemail.com', 'outlook.com', 'hotmail.com', 'yahoo.com',
+            'aol.com', 'zoho.com', 'mail.com', 'protonmail.com', 'icloud.com',
+        ]
+        risky = False
+        for mx in mx_hosts:
+            for provider in generic_providers:
+                if provider in mx:
+                    print(f"{R}[!] Warning: MX record points to generic provider: {mx} (possible spoofing risk)")
+                    risky = True
+        if not mx_hosts:
+            print(f"{R}[!] No MX records found. Domain may be easily spoofed!")
+        elif not risky:
+            print(f"{G}[+] {C}No obvious spoofing risk detected in MX records.{W}")
+    except (dns.resolver.NoAnswer, dns.resolver.NXDOMAIN):
+        print(f"{R}[!] No MX records found. Domain may be easily spoofed!")
+    except Exception as e:
+        print(f"{R}[!] Error checking MX records: {e}{W}")
+
+
 if __name__ == "__main__":
     target_domain = input("Enter the domain to perform DNS enumeration: ")
     result = dnsrec(target_domain)
