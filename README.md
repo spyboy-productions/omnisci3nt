@@ -73,6 +73,7 @@ Whether you're analyzing a target for vulnerabilities or simply exploring the te
 | Admin Panel Detection | Identify admin login portals |
 | Reverse DNS Lookup | Get hostnames from IP addresses |
 | Shared DNS Lookup | Discover other domains on the same DNS server |
+| vulnerabilities Scanner | Scan for common vulnerabilitie |
 | Full Recon Mode | Run all modules for deep analysis |
 
 ---
@@ -154,6 +155,7 @@ omnisci3nt -whois example.com
 | `-dirscan <domain>` | Directory brute-force |
 | `-portscan <domain>` | Port scanning |
 | `-admin <domain>` | Admin panel finder |
+| `-vulnscan <domain>` | Run vulnerability scanner |
 | `-all <domain>` | Run all tools in one go |
 
 ### Optional command for pipx:
