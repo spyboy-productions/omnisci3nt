@@ -37,11 +37,15 @@
 
 ---
 
-## 🕵️‍♂️ Omnisci3nt: One Tool to Rule All Recon
+## 🕵️‍♂️ **Omnisci3nt: Unified Web Reconnaissance Toolkit**
 
-Omnisci3nt is a powerful and comprehensive web reconnaissance toolkit tailored to cybersecurity professionals, ethical hackers, and digital investigators. It allows you to uncover hidden information about domains, analyze configurations, detect technologies, and explore archived content from the web.
+Omnisci3nt is a comprehensive web reconnaissance and intelligence framework designed for **cybersecurity professionals, ethical hackers, and security researchers**. It enables automated discovery and analysis of domain-related data such as subdomains, SSL/TLS certificates, exposed services, technologies, and archived web content.
 
-Whether you're analyzing a target for vulnerabilities or simply exploring the technical details of a website, Omnisci3nt provides an all-in-one solution to automate and streamline your reconnaissance process.
+By aggregating multiple reconnaissance techniques into a single workflow, Omnisci3nt helps users gain clear visibility into a domain’s external attack surface, configuration posture, and historical footprint. This makes it an effective tool for **security assessments, bug bounty reconnaissance, threat modeling, and defensive research**.
+
+Omnisci3nt is intended for **authorized testing and security analysis**, helping teams understand and reduce unintended exposure across internet-facing assets.
+
+> Omnisci3nt is designed for security research and authorized reconnaissance only.
 
 ---
 
