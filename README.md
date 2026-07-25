@@ -130,6 +130,28 @@ pipx install git+https://github.com/spyboy-productions/omnisci3nt.git
 
 ---
 
+### uv Installation
+
+Install via [`uv`](https://docs.astral.sh/uv/getting-started/installation/):
+
+#### Step 1: Install `pipx`
+```bash
+python3 -m pip install --user pipx
+python3 -m pipx ensurepath
+```
+
+#### Step 2: Install `uv`
+```bash
+pipx install uv
+```
+
+#### Step 3: Install Omnisci3nt
+```bash
+uv tool install git+https://github.com/spyboy-productions/omnisci3nt.git
+```
+
+---
+
 ### 💡 Example Usage
 
 ```bash
